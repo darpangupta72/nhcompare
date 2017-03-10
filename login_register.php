@@ -1,5 +1,6 @@
 <?php
-
+require_once('login.php');
+require_once('register.php');
 // button pressed 
 if (isset($_POST['command'])) {
 
@@ -14,5 +15,7 @@ if (isset($_POST['command'])) {
         break;
     
     }
+
+}
 
 ?>

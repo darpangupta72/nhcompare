@@ -21,13 +21,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         $success = TRUE;
         echo "success";
     } else {
-        "error_msg" = "Incorrect credentials. Please try again!";
+        $error_msg = "Incorrect credentials. Please try again!";
     } 
 
 } else {
 
     // required parameters missing
-    "error_msg" = "Required parameters missing!";
+    $error_msg = "Required parameters missing!";
 
 }
 
