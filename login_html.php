@@ -1,5 +1,5 @@
 <?php
-require_once 'test.php';
+require_once 'login_register.php';
 ?>
  <html>
  <head>
@@ -23,8 +23,8 @@ body{
 <ul>
 <center>
 <form method="POST">
-	<li>Username:<input type="text" name="Username" /></li>
-	<li>Password:  <input type="password" name="Password" /></li>
+	<li>Username:<input type="text" name="username" /></li>
+	<li>Password:  <input type="password" name="password" /></li>
 	<br>
 	<li>&emsp;&emsp;&emsp;&emsp;<button name="command" value="login">LOGIN</button> &emsp; <button name="command" value="register">SIGN UP</button> </li>
 </form>
