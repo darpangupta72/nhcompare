@@ -33,3 +33,14 @@ body{
 </div>
 </body>
 </html>
+<?php
+if($success==TRUE)
+{
+	include 'admin_welcome_html.php';
+}
+if(($success==FALSE)&&($error_message=="")
+	{}
+else {
+	echo $error_message;
+}
+?>
