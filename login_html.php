@@ -38,9 +38,9 @@ if($success==TRUE)
 {
 	include 'admin_welcome_html.php';
 }
-if(($success==FALSE)&&($error_message=="")
+if(($success==FALSE)&&($error_msg==""))
 	{}
 else {
-	echo $error_message;
+	echo $error_msg;
 }
 ?>
