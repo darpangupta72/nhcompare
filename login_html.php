@@ -4,37 +4,32 @@ require_once 'test.php';
  <html>
  <head>
   <title>LOGIN NHC</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
  <style>
 li {list-style: none;}
 body{
-	background-color: #F8C471;
-	
+	background-color: #FFFFFF;
+	background: url(123.jpg) no-repeat center;
 }
 </style>
 </head>
-<div top: 50%;>
-	<body>
+<body>
+<center>
 <h2> <font color=#000000>Welcome to NURSING HOME COMPARE</font></h2>
+</center>
+<div style=" position: relative; 
+  		top: 20%;"
+  	>
 <ul>
+<center>
 <form method="POST">
-	<li>Username: <input type="text" name="Username" /></li>
-	<li>Password: <input type="password" name="Password" /></li>
+	<li>Username:<input type="text" name="Username" /></li>
+	<li>Password:  <input type="password" name="Password" /></li>
 	<br>
-	<button name="command" value="login">LOGIN</button>
+	<li>&emsp;&emsp;&emsp;&emsp;<button name="command" value="login">LOGIN</button> &emsp; <button name="command" value="register">SIGN UP</button> </li>
 </form>
+</center>
 </ul>
-</body>
-
 </div>
-#outPopUp {
-  position: absolute;
-  width: 300px;
-  height: 200px;
-  z-index: 15;
-  top: 50%;
-  left: 50%;
-  margin: -100px 0 0 -150px;
-  background: red;
-}
+</body>
 </html>
