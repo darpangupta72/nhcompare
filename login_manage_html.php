@@ -54,8 +54,7 @@
 
 
 <?php
-if(isset($_POST['command']))
-{
+if(isset($_POST['command'])) {
     session_unset();
     session_destroy();
     header("Location: login_html.php");

@@ -27,7 +27,7 @@
                 margin-bottom: 0.4cm;
             }
       </style>
-            <?<?php 
+            <?php 
                 require_once('styling.php');
             ?>
     </head>
