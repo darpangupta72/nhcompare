@@ -3,19 +3,32 @@
         <title>ADMIN TOGGLE MENU</title>
     
         <style>
-            li {list-style: none;}
-            body{
+           body{
                 background-color: #FFFFFF;
                 background: url(123.jpg) center;
             }
+            h1, h2, h3, h5, h6 {
+                padding: 0;
+                margin-bottom: 0;
+            }
+
+            h4{   
+                margin-top: 0.15cm;
+                margin-bottom: 0.4cm;
+            }
+
         </style>
     </head>
     
     <body>
         <center>
-            <h2> <font color=#000000>Welcome ADMINISTRATOR</font></h2>
+            <h2> <font color=#000000>NURSING HOME COMPARE</font></h2>
+            <h4> <i><font color=#000000 >A system to compare nursing homes across USA</font></i></h4><hr>
         </center>
 
+        <center>
+            <font color=#000000>Welcome Administrator</font>
+        </center>
         <div style=" position: relative; 
             top: 20%;">
             <ul>
@@ -25,7 +38,7 @@
                 &emsp;&emsp;
                 <a href="nh_welcome_html.php">NURSING HOME USER SCREEN</a>
                 &emsp;&emsp;
-                <a href="">LOGIN MANAGEMENT</a>
+                <a href="login_manage.php">LOGIN MANAGEMENT</a>
             </center>
             </ul>
         </div>

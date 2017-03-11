@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>NORMAL USER TOGGLE MENU</title>
+        <title>LOGIN MANAGEMENT SYSTEM</title>
     
         <style>
             li {list-style: none;}
@@ -8,7 +8,6 @@
                 background-color: #FFFFFF;
                 background: url(123.jpg) center;
             }
-
             h1, h2, h3, h5, h6 {
                 padding: 0;
                 margin-bottom: 0;
@@ -23,18 +22,18 @@
     
     <body>
         <center>
-            <h2 > <font color=#000000>NURSING HOME COMPARE</font></h2>
-            <h4> <font color=#000000><i>A system to compare nursing homes across USA</i></font></h4>
+            <h2> <font color=#000000>NURSING HOME COMPARE</font></h2>
+            <h4> <i><font color=#000000 >A system to compare nursing homes across USA</font></i></h4><hr>
         </center>
-<hr>
-        <div style=" position: relative; top: 50%;">
-            
+            <div style=" position: relative; top: 20%;">
             <ul>
             <center>
 
-                <a href="">SEARCH NURSING HOMES</a>
-                &emsp;&emsp;&emsp;
-                <a href="">GIVE FEEDBACK</a>
+                <a href=""></a>
+                &emsp;&emsp;
+                <a href=""></a>
+                &emsp;&emsp;
+                <a href=""></a>
             </center>
             </ul>
         </div>
