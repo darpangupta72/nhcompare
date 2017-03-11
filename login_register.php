@@ -10,6 +10,9 @@ if (isset($_POST['command'])) {
         
         require_once('login.php');
         if($success == TRUE){
+            session_start();
+            $_SESSION["username"]=$_POST['username'];
+            $_SESSION["password"]=$_POST['password'];
             header("Location: admin_welcome_html.php");
         }
         else if($success == FALSE && $error_msg == "") {    
