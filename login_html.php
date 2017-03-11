@@ -14,10 +14,7 @@ body{
 <center>
 <h2> <font color=#000000>Welcome to NURSING HOME COMPARE</font></h2>
 </center>
-<div style=" position: absolute; 
-  		top: 20%;
-  		left: 38%"
-  	>
+<div style=" position: absolute; top: 20%; left: 38%">
 <ul>
 <center>
 <form action = "login_html.php" method="POST">

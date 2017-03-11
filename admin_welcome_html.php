@@ -6,7 +6,7 @@
             li {list-style: none;}
             body{
                 background-color: #FFFFFF;
-                background: url(123.jpg) no-repeat center;
+                background: url(123.jpg) center;
             }
         </style>
     </head>
@@ -20,11 +20,12 @@
             top: 20%;">
             <ul>
             <center>
-            <form method="POST">
-              
-                <br>
-                <li>&emsp;&emsp;&emsp;&emsp;<button name="command" value="login">LOGIN</button> &emsp; <button name="command" value="register">SIGN UP</button> </li>
-            </form>
+
+                <a href="general_user_html.php">GENERAL USER SCREEN</a>
+                &emsp;&emsp;
+                <a href="nh_welcome_html.php">NURSING HOME USER SCREEN</a>
+                &emsp;&emsp;
+                <a href="">LOGIN MANAGEMENT</a>
             </center>
             </ul>
         </div>
