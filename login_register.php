@@ -13,7 +13,15 @@ if (isset($_POST['command'])) {
             session_start();
             $_SESSION["username"]=$_POST['username'];
             $_SESSION["password"]=$_POST['password'];
-            header("Location: admin_welcome_html.php");
+            if($type=='s'||$type=='a') 
+                header("Location: admin_welcome_html.php");
+
+            if($type=='n')
+                header("Location: nh_welcome_html.php");
+
+            if($type=='u')
+                header("Location: general_user_html.php");
+
         }
         else if($success == FALSE && $error_msg == "") {    
         }
