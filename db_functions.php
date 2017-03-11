@@ -41,33 +41,32 @@ class db_functions {
   // checking if username already exists
   function isExistUsername($username) {
 
-    $sql = 'SELECT username FROM users';
-    $result = mysqli_query( $this->conn, $sql );
+    $sql = 'SELECT username FROM login';
+    $result = pg_query($this->conn, $sql);
 
-    while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
-      if($row['username']==$username)
-        return true;
+    while($row = pg_fetch_assoc($result)) { 
+      if($row['username'] == $username)   
+        return TRUE;
     }
 
-    return false;
+    return FALSE;
 
   }
 
   // storing new user in database
-  function storeUser($username, $passwordne, $name, $email, $mobile, $hostel_apartments, $type) {
+  function storeUser($username, $password) {
 
     //encrypting the given non-encrypted password
-		$extra = "admi";
-		$encrypted = base64_encode(sha1($passwordne.$extra, true) . $extra);
-	    $password=$encrypted;
+		//$extra = "admi";
+		//$encrypted = base64_encode(sha1($passwordne.$extra, true) . $extra);
+	    //$password=$encrypted;
   
-    $sql = "INSERT INTO users(username, password, name, emailId, mobile, hostel_apartments, userType) VALUES('$username', '$password', '$name', '$email', 
-      '$mobile', '$hostel_apartments', '$type')";
-    $result = mysqli_query( $this->conn, $sql );
+    $sql = "INSERT INTO login VALUES('$username', '$password', 'u')";
+    $result = pg_query($this->conn, $sql);
 
-    if(! $result ) 
-      return false;
-    return true;
+    if(! $result) 
+      return FALSE;
+    return TRUE;
 
   }
 
