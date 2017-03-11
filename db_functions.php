@@ -87,6 +87,15 @@ class db_functions {
 
   }
 
+  function getType($username) {
+
+    $sql = "SELECT type FROM login WHERE username = '$username'";
+    $result = pg_query($this->conn, $sql);
+    $row = pg_fetch_assoc($result);
+    return $row['type'];
+
+  }
+
 }
 
 ?>

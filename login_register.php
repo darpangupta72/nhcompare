@@ -8,8 +8,9 @@ if (isset($_POST['command'])) {
         case 'login':
         
         require_once('login.php');
-        if($success == TRUE)
+        if($success == TRUE){
             header("Location: admin_welcome_html.php");
+        }
         else if($success == FALSE && $error_msg == "") {    
         }
         else 
