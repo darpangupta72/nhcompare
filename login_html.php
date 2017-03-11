@@ -1,24 +1,27 @@
+
  <html>
- <head>
-  <title>LOGIN NHC</title>
-  
- <style>
-			li {list-style: none;}
-			body{
-				background-color: #FFFFFF;
-				background: url(123.jpg) center;
-			}
-			h1, h2, h3, h5, h6 {
-                padding: 0;
-                margin-bottom: 0;
+	<head>
+  		<title>LOGIN NHC</title>
+  		<style>
+  			li{ list-style: none; }
+            body{
+                    background-color: #FFFFFF;
+                    background: url(123.jpg) center;
+                }
+            h1, h2, h3, h5, h6 {
+                 padding: 0;
+                 margin-bottom: 0;
             }
 
             h4{   
                 margin-top: 0.15cm;
                 margin-bottom: 0.4cm;
             }
-</style>
-</head>
+        </style>
+            <?<?php 
+                require_once('styling.php');
+            ?>
+	</head>
 <body>
 <center>
 <h2> <font color=#000000>Welcome to NURSING HOME COMPARE</font></h2>
@@ -40,7 +43,7 @@
 </body>
 <center>
 <?php
-error_reporting(0);
+//error_reporting(0);
 // button pressed 
 require_once('login_register.php');
 ?>

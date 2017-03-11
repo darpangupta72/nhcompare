@@ -2,15 +2,15 @@
     <head>
         <title>LOGIN MANAGEMENT SYSTEM</title>
     
-        <style>
-            li {list-style: none;}
+         <style>
+            li{list-style: none; }
             body{
-                background-color: #FFFFFF;
-                background: url(123.jpg) center;
-            }
+                    background-color: #FFFFFF;
+                    background: url(123.jpg) center;
+                }
             h1, h2, h3, h5, h6 {
-                padding: 0;
-                margin-bottom: 0;
+                 padding: 0;
+                 margin-bottom: 0;
             }
 
             h4{   
@@ -18,6 +18,10 @@
                 margin-bottom: 0.4cm;
             }
         </style>
+            <?<?php 
+                require_once('styling.php');
+            ?>
+        
     </head>
     
     <body>
@@ -25,18 +29,35 @@
             <h2> <font color=#000000>NURSING HOME COMPARE</font></h2>
             <h4> <i><font color=#000000 >A system to compare nursing homes across USA</font></i></h4><hr>
         </center>
-            <div style=" position: relative; top: 20%;">
-            <ul>
-            <center>
+<form method="post">
+  <label class="logoutLblPos">
+  <button name="command" value="logout">LOGOUT</button>
+  </label>
+</form>
 
-                <a href=""></a>
-                &emsp;&emsp;
-                <a href=""></a>
-                &emsp;&emsp;
-                <a href=""></a>
-            </center>
-            </ul>
-        </div>
+<div style=" position: absolute; top: 25%; left: 38%">
+<ul>
+<center>
+<form action = "login_html.php" method="POST">
+    <li>Username:<input type="text" name="username" /></li>
+    <li>Password:  <input type="password" name="password" /></li>
+    <br>
+    <li>&emsp;&emsp;&emsp;&emsp;<button name="command" value="login">LOGIN</button> &emsp; <button name="command" value="register">SIGN UP</button> </li>
+</form>
+</center>
+</ul>
+</div>
+
     </body>
 
 </html>
+
+
+<?php
+if(isset($_POST['command']))
+{
+    session_unset();
+    session_destroy();
+    header("Location: login_html.php");
+}
+?>
