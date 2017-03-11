@@ -17,9 +17,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $user = $db->getUser($username, $password);
 
     // checking if credentials are correct
-    if ($user) {
+    if ($user == TRUE) {
         $success = TRUE;
-        echo "success";
     } else {
         $error_msg = "Incorrect credentials. Please try again!";
     } 

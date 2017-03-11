@@ -1,7 +1,3 @@
-<?php
-    require_once 'test.php';
-?>
-
 <html>
     <head>
         <title>ADMIN TOGGLE MENU</title>
@@ -25,8 +21,7 @@
             <ul>
             <center>
             <form method="POST">
-                <li>Username:<input type="text" name="Username" /></li>
-                <li>Password:  <input type="password" name="Password" /></li>
+              
                 <br>
                 <li>&emsp;&emsp;&emsp;&emsp;<button name="command" value="login">LOGIN</button> &emsp; <button name="command" value="register">SIGN UP</button> </li>
             </form>

@@ -1,21 +1,28 @@
 <?php
-require_once('login.php');
-require_once('register.php');
+
 // button pressed 
 if (isset($_POST['command'])) {
 
     switch ($_POST['command']) {
         
         case 'login':
-        include 'login.php';
+        require_once('login.php');
         break;
         
         case 'register':
-        include 'register.php';
+        require_once('register.php');
         break;
     
     }
 
 }
 
+if($success == TRUE)
+{
+	header("Location: admin_welcome_html.php");
+}
+else if($success == FALSE && $error_msg == "") {}
+else {
+	echo $error_msg;
+}
 ?>

@@ -1,6 +1,3 @@
-<?php
-require_once 'login_register.php';
-?>
  <html>
  <head>
   <title>LOGIN NHC</title>
@@ -22,7 +19,7 @@ body{
   	>
 <ul>
 <center>
-<form method="POST">
+<form action = "login_html.php" method="POST">
 	<li>Username:<input type="text" name="username" /></li>
 	<li>Password:  <input type="password" name="password" /></li>
 	<br>
@@ -32,15 +29,11 @@ body{
 </ul>
 </div>
 </body>
-</html>
+<center>
 <?php
-if($success==TRUE)
-{
-	include 'admin_welcome_html.php';
-}
-if(($success==FALSE)&&($error_msg==""))
-	{}
-else {
-	echo $error_msg;
-}
+error_reporting(0);
+// button pressed 
+require_once('login_register.php');
 ?>
+</center>
+</html>
