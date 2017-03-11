@@ -9,7 +9,7 @@ $port = "port = 5432";
 // First get the platform
 // For Darpan, Pranjal
 if (preg_match('/linux/i', $u_agent)) {
-	$dbname = "dbname = nhcompare";
+	$dbname = "dbname = nhc";
 	$credentials = "user = postgres password = Dddddd1.";
 } elseif (preg_match('/windows|win32/i', $u_agent)) {
 	$dbname = "dbname = postgres";

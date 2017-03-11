@@ -13,17 +13,17 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // checking if username is already registered or password field is less than 8 characters
-    if($db->isExistUsername($username)) {
-
+    // checking if username is of appropriate length
+    if(strlen($username) < 6 || strlen($username) > 15)
+        $error_msg = "Username should be b/w 6 and 15 characters long!";
+    // checking if username is available
+    else if($db->isExistUsername($username))
         $error_msg = "Username already in use!";
-    
-    } else if(strlen($password) < 8) {
-
-        $error_msg = "Password should be of minimum 8 characters!";
-
-    } else {
-
+    // checking if password is of appropriate length
+    else if(strlen($password) < 6 || strlen($password) > 15) 
+        $error_msg = "Password should be b/w 6 and 15 characters long!";
+    // all checks passed; add user to database
+    else {
         // creating and storing the new user
         $user = $db->storeUser($username, $password);
 

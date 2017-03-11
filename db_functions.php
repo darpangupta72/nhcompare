@@ -26,11 +26,11 @@ class db_functions {
     $result = pg_query($this->conn, $sql);
 
 	  //encryption(Assuming encrypted password is saved in database)
-	  //$extra = "admi";
- 	  //$pass = base64_encode(sha1($password.$extra, true) . $extra);
+	  $extra = "admi";
+ 	  $pass = base64_encode(sha1($password.$extra, true) . $extra);
 	
     while($row = pg_fetch_assoc($result)) {	
-      if($row['password'] == $password)   
+      if($row['password'] == $pass)   
         return TRUE;
     }
 
@@ -54,14 +54,14 @@ class db_functions {
   }
 
   // storing new user in database
-  function storeUser($username, $password) {
+  function storeUser($username, $password, $type = 'u') {
 
     //encrypting the given non-encrypted password
-		//$extra = "admi";
-		//$encrypted = base64_encode(sha1($passwordne.$extra, true) . $extra);
-	    //$password=$encrypted;
+		$extra = "admi";
+		$encrypted = base64_encode(sha1($password.$extra, true) . $extra);
+	  $password_new = $encrypted;
   
-    $sql = "INSERT INTO login VALUES('$username', '$password', 'u')";
+    $sql = "INSERT INTO login VALUES('$username', '$password_new', '$type')";
     $result = pg_query($this->conn, $sql);
 
     if(! $result) 
