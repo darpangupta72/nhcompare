@@ -38,7 +38,7 @@
                 &emsp;&emsp;
                 <a href="nh_welcome_html.php">NURSING HOME USER SCREEN</a>
                 &emsp;&emsp;
-                <a href="login_manage.php">LOGIN MANAGEMENT</a>
+                <a href="login_manage_html.php">LOGIN MANAGEMENT</a>
             </center>
             </ul>
         </div>
