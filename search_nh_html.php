@@ -45,7 +45,7 @@
             </label>
         </form>
 
-        <div style=" position: absolute; top: 30%; left:-1cm">
+        <div style=" position: absolute; top: 20%; left:0cm">
             <ul>
                 <form action = "search_nh_html.php" method="GET">
                     <li>Search On: <select name="type" id="type">
@@ -78,7 +78,9 @@ if(isset($_GET['command'])) {
             break;
         
         case 'submit':
+            echo "<center><div style=\" display: block; margin-top:80px !important;\"><ul>";
             require_once 'search_nh.php';
+            echo "</div></center>";
             break;
         default:
             # code...
@@ -101,11 +103,11 @@ if(isset($_GET['type'])){
                         default: $name = 'WTF!!'; break;
                     }
 
-                    echo "<div style=\" position: absolute; top: 50%; left:-1cm\"><ul>";
+                    echo "<div style=\" position: absolute; top: 20%; left:7cm\"><ul>";
                     echo "<form action = \"search_nh_html.php\" method=\"GET\">";
                     echo "<input type=\"hidden\" name=\"type\" value=\"$type\">";
-                    echo "<li> $name: <input type=\"text\" name=\"field\" /></li><br>";
-                    echo "<li>Search On: <select name=\"order\" id=\"order\">";
+                    echo "<li> $name: <input type=\"text\" name=\"field\" />";
+                    echo " &emsp;&emsp;&emsp;&emsp;Search On: <select name=\"order\" id=\"order\">";
                         echo "<option value = \"overall_rating\">Overall Rating</option>";
                         echo "<option value = \"survey_rating\">Health Inspection Rating</option>";
                         echo "<option value = \"quality_rating\">QM Rating</option>";
@@ -113,8 +115,8 @@ if(isset($_GET['type'])){
                         echo "<option value = \"rn_staffing_rating\">RN Staffing Rating</option>";
                         echo "<option value = \"weighted_all_cycles_score\">Health Survey Score</option>";
                         echo "<option value = \"user_score\">User Rating</option>";
-                    echo "</select></li><br>";
-                    echo "<li>&emsp;&emsp;&emsp;<button name=\"command\" value=\"submit\">SUBMIT</button></li></form></ul></div>";  
+                    echo "</select>";
+                    echo "&emsp;&emsp;&emsp;<button name=\"command\" value=\"submit\">SUBMIT</button></li></form></ul></div>";  
                 }
 }
 
