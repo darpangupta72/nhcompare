@@ -39,7 +39,7 @@
             <h4> <i><font color=#000000 >A system to compare nursing homes across USA</font></i></h4><hr>
         </center>
 
-        <form method="post">
+        <form method="get">
             <label class="logoutLblPos">
                 <button name="command" value="logout">LOGOUT</button>
             </label>
@@ -89,34 +89,34 @@ if(isset($_GET['command'])) {
 }
 
 if(isset($_GET['type'])){
-                $type=$_GET['type'];$name='';
+    $type=$_GET['type'];$name='';
 
-                if($type=="select"){}
-                else {
-                    switch ($type) {
-                        case 'city': $name = 'City'; break;
-                        case 'state': $name = 'State'; break;
-                        case 'county_name': $name = 'County Name'; break;
-                        case 'county_ssa': $name = 'County SSA Code'; break;
-                        case 'zip': $name = 'Zip Code'; break;
-                        default: $name = 'WTF!!'; break;
-                    }
+    if($type=="select"){}
+    else {
+        switch ($type) {
+            case 'city': $name = 'City'; break;
+            case 'state': $name = 'State'; break;
+            case 'county_name': $name = 'County Name'; break;
+            case 'county_ssa': $name = 'County SSA Code'; break;
+            case 'zip': $name = 'Zip Code'; break;
+            default: $name = 'WTF!!'; break;
+        }
 
-                    echo "<div style=\" position: absolute; top: 20%; left:7cm\"><ul>";
-                    echo "<form action = \"search_nh_html.php\" method=\"GET\">";
-                    echo "<input type=\"hidden\" name=\"type\" value=\"$type\">";
-                    echo "<li> $name: <input type=\"text\" name=\"field\" />";
-                    echo " &emsp;&emsp;&emsp;&emsp;Search On: <select name=\"order\" id=\"order\">";
-                        echo "<option value = \"overall_rating\">Overall Rating</option>";
-                        echo "<option value = \"survey_rating\">Health Inspection Rating</option>";
-                        echo "<option value = \"quality_rating\">QM Rating</option>";
-                        echo "<option value = \"staffing_rating\">Staffing Rating</option>";
-                        echo "<option value = \"rn_staffing_rating\">RN Staffing Rating</option>";
-                        echo "<option value = \"weighted_all_cycles_score\">Health Survey Score</option>";
-                        echo "<option value = \"user_score\">User Rating</option>";
-                    echo "</select>";
-                    echo "&emsp;&emsp;&emsp;<button name=\"command\" value=\"submit\">SUBMIT</button></li></form></ul></div>";  
-                }
+        echo "<div style=\" position: absolute; top: 20%; left:7cm\"><ul>";
+        echo "<form action = \"search_nh_html.php\" method=\"GET\">";
+        echo "<input type=\"hidden\" name=\"type\" value=\"$type\">";
+        echo "<li> $name: <input type=\"text\" name=\"field\" />";
+        echo " &emsp;&emsp;&emsp;&emsp;Search On: <select name=\"order\" id=\"order\">";
+            echo "<option value = \"overall_rating\">Overall Rating</option>";
+            echo "<option value = \"survey_rating\">Health Inspection Rating</option>";
+            echo "<option value = \"quality_rating\">QM Rating</option>";
+            echo "<option value = \"staffing_rating\">Staffing Rating</option>";
+            echo "<option value = \"rn_staffing_rating\">RN Staffing Rating</option>";
+            echo "<option value = \"weighted_all_cycles_score\">Health Survey Score</option>";
+            echo "<option value = \"user_score\">User Rating</option>";
+        echo "</select>";
+        echo "&emsp;&emsp;&emsp;<button name=\"command\" value=\"submit\">SUBMIT</button></li></form></ul></div>";  
+    }
 }
 
 ?>
