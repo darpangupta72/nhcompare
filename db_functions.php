@@ -98,7 +98,8 @@ class db_functions {
 
   function search_nh($type, $field) {
 
-    $sql = "CREATE VIEW NH AS SELECT provnum, provname FROM provider_info WHERE $type = '$field'; SELECT count(*) FROM NH";
+    $sql = "CREATE VIEW NH AS SELECT provnum, provname FROM provider_info WHERE UPPER($type) = UPPER('$field');" . 
+           " SELECT count(*) FROM NH";
     $result = pg_query($this->conn, $sql);
     $count = pg_fetch_assoc($result)['count'];
     
