@@ -96,10 +96,48 @@ class db_functions {
 
   }
 
-  function search_nh($type, $field) {
+  function search_nh($type, $field, $order) {
 
-    $sql = "CREATE VIEW NH AS SELECT provnum, provname FROM provider_info WHERE UPPER($type) = UPPER('$field');" . 
-           " SELECT count(*) FROM NH";
+    $order_list = array("overall_rating", "survey_rating", "quality_rating", "staffing_rating", "rn_staffing_rating",
+                        "user_score");
+
+    for($i = 1; $i < 6; $i++) {
+      if($order_list[$i] == $order) {
+        for($j = $i; $j > 0 ; $j--)
+          $order_list[$j] = $order_list[$j - 1];
+        $order_list[0] = $order;
+      }
+    }
+
+    $final = $order_list[0];
+    $final1 = $order_list[0];
+    $names = array("", "", "", "", "", "", "");
+    
+    for($i = 0; $i < 6; $i++) {
+
+      switch ($order_list[$i]) {
+
+        case 'overall_rating': $names[$i] = "Overall Rating"; break; 
+        case 'survey_rating': $names[$i] = "Health Inspection Rating"; break;
+        case 'quality_rating': $names[$i] = "QM Rating"; break;
+        case 'staffing_rating': $names[$i] = "Staffing Rating"; break;
+        case 'rn_staffing_rating': $names[$i] = "RN Staffing Rating"; break;
+        case 'user_score': $names[$i] = "User Rating"; break;
+        default: break;
+      
+      }
+
+      if($i > 0)
+        $final = $final . ", " . $order_list[$i];
+
+      $final1 = $final1 . " DESC NULLS LAST, ".$order_list[$i];  
+
+    }
+
+    $sql = "CREATE TABLE V1 AS SELECT * FROM provider_info; ALTER TABLE V1 ADD COLUMN user_score numeric; UPDATE V1 SET user_score = (SELECT round(AVG(score)::numeric, 2) FROM feedback GROUP BY feedback.provnum) FROM feedback WHERE V1.provnum = feedback.provnum;";
+    $result = pg_query($this->conn, $sql);
+
+    $sql = "CREATE VIEW NH AS SELECT provnum, provname, " . $final . " FROM V1 WHERE UPPER($type) = UPPER('$field') ORDER BY " . $final1 . " DESC NULLS LAST, provnum DESC; SELECT count(*) FROM NH";
     $result = pg_query($this->conn, $sql);
     $count = pg_fetch_assoc($result)['count'];
     
@@ -110,12 +148,18 @@ class db_functions {
 
     if($count > 0) {
       
-      echo "<center><table border='1'><tr><th>Provider No.</th><th>Provider Name</th></tr>";
+      echo "<center><table border='1'><tr><th>Provider No.</th><th>Provider Name</th><th>$names[0]</th><th>$names[1]</th><th>$names[2]</th><th>$names[3]</th><th>$names[4]</th><th>$names[5]</th><th>$names[6]</th></tr>";
 
       while($row = pg_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td>".$row['provnum']."</td>";
+        echo "<td><center>".$row['provnum']."<center/></td>";
         echo "<td>".$row['provname']."</td>";
+        echo "<td><center>".$row[$order_list[0]]."<center/></td>";
+        echo "<td><center>".$row[$order_list[1]]."<center/></td>";
+        echo "<td><center>".$row[$order_list[2]]."<center/></td>";
+        echo "<td><center>".$row[$order_list[3]]."<center/></td>";
+        echo "<td><center>".$row[$order_list[4]]."<center/></td>";
+        echo "<td><center>".$row[$order_list[5]]."<center/></td>";
         echo "</tr>";    
       }
 
@@ -123,7 +167,7 @@ class db_functions {
 
     }
 
-    $sql = "DROP VIEW NH";
+    $sql = "DROP VIEW NH; DROP TABLE V1";
     $result = pg_query($this->conn, $sql);
   
   }
