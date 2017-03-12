@@ -85,5 +85,5 @@ DONE 6. PK - Form creation in "give_feedback_html.php" to send params in "give_f
 --SCREEN 7b COMPLETE--
 
 8. DG - Take username(assume nh) from $_SESSION['username'] 8,10,11
-9. PK - login management screen send params to login_manage.php
+DONE 9. PK - login management screen send params to login_manage.php
 9. DG - do "login_manage.php"

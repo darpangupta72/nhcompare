@@ -11,8 +11,9 @@ if (isset($_POST['command'])) {
         require_once('login.php');
         if($success == TRUE){
             session_start();
-            $_SESSION["username"]=$_POST['username'];
-            $_SESSION["password"]=$_POST['password'];
+            $_SESSION['username']=$_POST['username'];
+            $_SESSION['password']=$_POST['password'];
+            $_SESSION['usertype']=$type;
             if($type=='s'||$type=='a') 
                 header("Location: admin_welcome_html.php");
 
