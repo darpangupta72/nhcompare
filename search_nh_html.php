@@ -45,16 +45,19 @@
             </label>
         </form>
 
-        <div style=" position: absolute; top: 30%; left:0cm">
+        <div style=" position: absolute; top: 30%; left:-1cm">
             <ul>
                 <form action = "search_nh_html.php" method="POST">
-                    <li>Zip Code: <input type="text" name="" /></li><br>
-                    <li>Zip Code: <input type="text" name="" /></li><br>
-                    <li>Zip Code: <input type="text" name="" /></li><br>
-                    <li>Zip Code: <input type="text" name="" /></li><br>
-                    <li>Zip Code: <input type="text" name="" /></li><br>
-                    <li>Zip Code: <input type="text" name="zip" /></li><br>
-                    <li>&emsp;&emsp;&emsp;<button name="command" value="submit">SUBMIT</button></li>
+                    <li>Search On: <select name="type" id="type">
+                            <option>--SELECT--</option>
+                            <option>City</option>
+                            <option>County Name</option>
+                            <option>County SSA Code</option>
+                            <option>State</option>
+                            <option>Zip Code</option>
+                        </select>
+                    </li><br>
+                    <li>&emsp;&emsp;&emsp;<button name="command" value="show">SUBMIT</button></li>
                 </form>
             </ul>
         </div>
@@ -77,7 +80,7 @@ if(isset($_POST['command'])) {
             require_once 'db_connect.php';
             $conn = pg_connect("$host $port $dbname $credentials");
             $zip=$_POST['zip'];
-            $sql = "SELECT provnum, provname, state FROM provider_info WHERE state = '$zip'";
+            $sql = "SELECT provnum, provname, state FROM provider_info WHERE zip = '$zip'";
             $result = pg_query($conn,$sql);
 
             echo "<center><table border='1'><tr><th>Provider No.</th><th>Provider Name</th><th>Zip Code</th></tr>";
@@ -92,6 +95,12 @@ if(isset($_POST['command'])) {
 
             echo "</table></center>";
             break;
+        case 'show':
+            $type=$_POST['type'];
+            echo "<li> $type :<input type=\"text\" name=\"$type\" /></li><br>";  
+            break;
+
+
         default:
             # code...
             break;
