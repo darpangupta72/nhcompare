@@ -11,16 +11,8 @@ if (isset($_POST['zip'])) {
 
     // receiving the post params
     $zip = $_POST['zip'];
-
     // get the user by username and password
-    $user = $db->getUser($username, $password);
-
-    // checking if credentials are correct
-    if ($user == TRUE) {
-        $success = TRUE;
-    } else {
-        $error_msg = "Incorrect credentials. Please try again!";
-    } 
+    $db->search_nh($zip);
 
 } else {
 

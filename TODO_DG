@@ -1,2 +1,5 @@
 use hurl.it to test
 user can edit details
+search get post and use appropriate method
+show 50 results per page
+if all fields empty?

@@ -96,6 +96,29 @@ class db_functions {
 
   }
 
+  function search_nh($zip) {
+if($zip == '')
+  $sql = "SELECT provnum, provname FROM provider_info WHERE zip IS NULL";
+else
+    $sql = "SELECT provnum, provname FROM provider_info WHERE zip = '$zip'";
+    $result = pg_query($this->conn, $sql);
+//if($result == FALSE) echo "nothing";
+  //  if(pg_fetch_assoc($result)['provnum'] == '')
+    //  echo "no results found";
+//else{
+            echo "<center><table border='1'><tr><th>Provider No.</th><th>Provider Name</th></tr>";
+
+            while($row = pg_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>".$row['provnum']."</td>";
+                echo "<td>".$row['provname']."</td>";
+                echo "</tr>";    
+            }
+
+            echo "</table></center>";
+}
+  //}
+
 }
 
 ?>

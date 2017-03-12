@@ -122,6 +122,13 @@ DROP cycle_3_defs,
 DROP cycle_3_nfromdefs,
 DROP cycle_3_nfromcomp;
 
+create table t(provnum varchar(6), zip varchar(5));
+insert into t select provnum, zip from provider_info;
+alter table provider_info drop zip;
+alter table provider_info add column zip varchar(5);
+update provider_info set zip = t.zip from t where provider_info.provnum = t.provnum;
+drop table t;
+
 
 --3 DEFICIENCIES--
 
