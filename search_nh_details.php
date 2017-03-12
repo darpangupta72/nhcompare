@@ -14,7 +14,7 @@ else {
 
 <html>
     <head>
-        <title>NORMAL USER TOGGLE MENU</title>
+        <title>NURSING HOME DETAIL</title>
     
          <style>
             body{

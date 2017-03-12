@@ -41,13 +41,13 @@ $name= '';$provnum='';
             <h2 > <font color=#000000>NURSING HOME COMPARE</font></h2>
             <h4> <font color=#000000><i>A system to compare nursing homes across USA</i></font></h4><hr>
         </center>
-        <form method="post">
+        <form  method="post">
             <label class="logoutLblPos">
                 <button name="command" value="logout">LOGOUT</button>
             </label>
         </form>
 
-        <center><div style=" position: relative; top: 20%;">
+        <center><div style=" position: relative; top: 25%;">
             <ul><?php echo "Welcome $name, we would like to know your feedback about $provnum<br>"; ?><br>
                 <form action = "give_feedback_html.php" id="feedback" method="POST">
                     <?php 
