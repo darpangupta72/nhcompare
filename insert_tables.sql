@@ -458,6 +458,32 @@ INSERT INTO login
 SELECT provnum, provnum, 'n'
 FROM provider_info;
 
+--12 FEEDBACK TABLE--
+
+CREATE TABLE feedback(
+feedback_id serial primary key,
+username varchar(45),
+provnum varchar(6),
+score int,
+score_desc varchar(250),
+time timestamp default CURRENT_TIMESTAMP,
+
+CONSTRAINT fk1 FOREIGN KEY (provnum) REFERENCES provider_info(provnum) ON DELETE CASCADE,
+CONSTRAINT fk2 FOREIGN KEY (username) REFERENCES login(username) ON DELETE CASCADE,
+CONSTRAINT chk CHECK (score IN (1, 2, 3, 4, 5, null))
+);
+
+CREATE OR REPLACE FUNCTION update_column()
+        RETURNS TRIGGER AS '
+  BEGIN
+    NEW.time = NOW();
+    RETURN NEW;
+  END;
+' LANGUAGE 'plpgsql';
+ 
+CREATE TRIGGER update_modtime BEFORE UPDATE
+  ON feedback FOR EACH ROW EXECUTE PROCEDURE
+  update_column();
 
 --11 HEALTH DEFICIENCIES--
 
