@@ -152,7 +152,7 @@ class db_functions {
 
       while($row = pg_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td><a href=\"search_nh_details.php?provnum".$row['provnum']."\"><center>".$row['provnum']."<center/></a></td>";
+        echo "<td><a href=\"search_nh_details.php?provnum=".$row['provnum']."\"><center>".$row['provnum']."<center/></a></td>";
         echo "<td>".$row['provname']."</td>";
         echo "<td><center>".$row[$order_list[0]]."<center/></td>";
         echo "<td><center>".$row[$order_list[1]]."<center/></td>";
@@ -174,7 +174,10 @@ class db_functions {
 
   function details_nh($provnum) {
 
-  	$sql = "SELECT * FROM provider_info WHERE provnum = '$provnum'";
+  	$sql = "CREATE TABLE V1 AS SELECT * FROM provider_info; ALTER TABLE V1 ADD COLUMN user_score numeric; UPDATE V1 SET user_score = (SELECT round(AVG(score)::numeric, 2) FROM feedback GROUP BY feedback.provnum) FROM feedback WHERE V1.provnum = feedback.provnum;";
+    $result = pg_query($this->conn, $sql);
+
+  	$sql = "SELECT * FROM V1 WHERE provnum = '$provnum'";
     $result = pg_query($this->conn, $sql);
     $row = pg_fetch_assoc($result);
 
@@ -182,14 +185,23 @@ class db_functions {
     echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
     echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
     echo "Phone: ".$row['phone']."<br>";
-    echo "Ownership Type: ".$row['ownership']."<br></div>";
+    echo "Ownership Type: ".$row['ownership']."<br></div><br><br>";
 
-    // echo "<center>Provider: ".$row['provnum'].", ".$row['provname']."</center>";
-    // echo "<center>Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA</center>";
-    // echo "<center>Phone: ".$row['phone']."</center>";
-    // echo "<center>Ownership Type: ".$row['ownership']."</center>";
+    echo "<center><table border='1'><tr><th>Overall Rating</th><th>Health Inspection Rating</th><th>QM Rating</th><th>Staffing Rating</th><th>RN Staffing Rating</th><th>User Rating</th><th>No. of Certified Beds</th><th>No. of Residents in Certified Beds</th><th>Provider Type</th><th>Provider Resides in Hospital</th><th>Continuing Care Retirement Community</th><th>Special Focus Facility</th><th>With a Resident and Family Council</th><th>Automatic Sprinkler Systems</th><th>Cycle1 Health Deficiency Score</th><th>Cycle1 Health Revisit Score</th><th>Cycle1 Total Health Score</th><th>Cycle2 Health Deficiency Score</th><th>Cycle2 Health Revisit Score</th><th>Cycle2 Total Health Score</th><th>Cycle3 Health Deficiency Score</th><th>Cycle3 Health Revisit Score</th><th>Cycle3 Total Health Score</th><th>Weighted Health Survey Score</th><th>No. of Facility Reported Incidents</th><th>No. of Substantiated Complaints</th><th>Processing Date</th></tr>";
 
+    echo "<tr>";
+    echo "<td><center>".$row['overall_rating']."</center></td>";
+    echo "<td><center>".$row['survey_rating']."</center></td>";
+    echo "<td><center>".$row['quality_rating']."</center></td>";
+    echo "<td><center>".$row['staffing_rating']."</center></td>";
+    echo "<td><center>".$row['rn_staffing_rating']."</center></td>";
+    echo "<td><center>".$row['user_score']."</center></td>";
+    echo "<td><center>".$row['bedcert']."</center></td>";
+    echo "</tr>";    
 
+    echo "</table></center>";
+    $sql = "DROP TABLE V1";
+    $result = pg_query($this->conn, $sql);
 
   }  
 
