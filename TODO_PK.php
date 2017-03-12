@@ -76,11 +76,11 @@ DONE 2,4. PK - Add hyperlink to screen 5 as written above.
 DONE 5. DG - Screen 6 creation
 DONE 5. PK - hyperlinks for feedback on 6 and goto 7a , 7b with get params
 DONE 6. PK - Form creation in "give_feedback_html.php" to send params in "give_feedback.php"
-6. DG - do "give_feedback.php" to insert into feedback.
+DONE 6. DG - do "give_feedback.php" to insert into feedback.
 
 --SCREEN 6 , 7a COMPLETE--
 
-7. DG - do 7b
+DONE 7. DG - do 7b
 
 --SCREEN 7b COMPLETE--
 
