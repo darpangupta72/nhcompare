@@ -3,9 +3,6 @@
 require_once 'db_functions.php';
 $db = new db_functions();
 
-$success = FALSE;
-$error_msg = "";
-
 // both parameters received 
 if (isset($_GET['type']) && isset($_GET['field'])) {
 
