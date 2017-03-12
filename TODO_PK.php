@@ -69,13 +69,13 @@ DONE 2. PK - send "search_nh.php" a order param for order by clause
 2. DG - Screen 5 add columns to be printed and order them
 DONE 3. PK - align input form in screen 5 push the output table downwards. Rest table formatting to be done later
 DONE 4. DG - create blank(with the header) .php files for screens 6,7b,8,10,11
-4. PK - Add hyperlink to screen 5 as written above.
+2,4. PK - Add hyperlink to screen 5 as written above.
 
 --SCREEN 5 COMPLETES--
 
 5. DG - Screen 6 creation
 5. PK - hyperlinks for feedback on 6 and goto 7a , 7b with get params
-6. PK - Form creation in "give_feedback_html.php" to send params in "give_feedback.php"
+DONE 6. PK - Form creation in "give_feedback_html.php" to send params in "give_feedback.php"
 6. DG - do "give_feedback.php" to insert into feedback.
 
 --SCREEN 6 , 7a COMPLETE--
