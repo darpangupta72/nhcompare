@@ -129,6 +129,15 @@ alter table provider_info add column zip varchar(5);
 update provider_info set zip = t.zip from t where provider_info.provnum = t.provnum;
 drop table t;
 
+ALTER TABLE provider_info
+DROP overall_rating_fn,
+DROP survey_rating_fn,
+DROP quality_rating_fn,
+DROP staffing_rating_fn,
+DROP rn_staffing_rating_fn,
+DROP staffing_flag,
+DROP pt_staffing_flag;
+
 
 --3 DEFICIENCIES--
 
