@@ -47,17 +47,17 @@
 
         <div style=" position: absolute; top: 30%; left:-1cm">
             <ul>
-                <form action = "search_nh_html.php" method="POST">
+                <form action = "search_nh_html.php" method="GET">
                     <li>Search On: <select name="type" id="type">
-                            <option>--SELECT--</option>
-                            <option>City</option>
-                            <option>County Name</option>
-                            <option>County SSA Code</option>
-                            <option>State</option>
-                            <option>Zip Code</option>
+                            <option value="select">--SELECT--</option>
+                            <option value = "city">City</option>
+                            <option value = "county_name">County Name</option>
+                            <option value = "county_ssa">County SSA Code</option>
+                            <option value = "state">State</option>
+                            <option value = "zip">Zip Code</option>
                         </select>
                     </li><br>
-                    <li>&emsp;&emsp;&emsp;<button name="command" value="show">SUBMIT</button></li>
+                    <input type="submit" value="Show">
                 </form>
             </ul>
         </div>
@@ -67,9 +67,9 @@
 </html>
 
 <?php
-if(isset($_POST['command'])) {
+if(isset($_GET['command'])) {
 
-    switch ($_POST['command']) {
+    switch ($_GET['command']) {
 
         case 'logout':
 
@@ -83,12 +83,35 @@ if(isset($_POST['command'])) {
             break;
 
         case 'show':
-            $type=$_POST['type'];
-            echo "<li> $type :<input type=\"text\" name=\"$type\" /></li><br>";  
+            
             break;
         default:
             # code...
             break;
     }
+
 }
+
+if(isset($_GET['type'])){
+                $type=$_GET['type'];$name='';
+
+                if($type=="select"){}
+                else {
+                    switch ($type) {
+                        case 'city': $name = 'City'; break;
+                        case 'state': $name = 'State'; break;
+                        case 'county_name': $name = 'County Name'; break;
+                        case 'county_ssa': $name = 'County SSA Code'; break;
+                        case 'zip': $name = 'Zip Code'; break;
+                        default: $name = 'WTF!!'; break;
+                    }
+
+                    echo "<div style=\" position: absolute; top: 50%; left:-1cm\"><ul>";
+                    echo "<form action = \"search_nh_html.php\" method=\"GET\">";
+                    echo "<input type=\"hidden\" name=\"type\" value=\"$type\">";
+                    echo "<li> $name: <input type=\"text\" name=\"field\" /></li><br>";
+                    echo "<li>&emsp;&emsp;&emsp;<button name=\"command\" value=\"submit\">SUBMIT</button></li></form></ul></div>";  
+                }
+}
+
 ?>

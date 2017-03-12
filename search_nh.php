@@ -19,6 +19,7 @@ if (isset($_GET['type']) && isset($_GET['field'])) {
 
     // required parameters missing
     $error_msg = "Required parameters missing!";
+    echo "<center>$error_msg</center>";
 
 }
 
