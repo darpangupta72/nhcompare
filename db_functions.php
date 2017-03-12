@@ -172,7 +172,7 @@ class db_functions {
   
   }
 
-  function details_nh($provnum) {
+  function details_nh($provnum,$usertype) {
 
   	$sql = "CREATE VIEW V2 AS SELECT provnum AS provnum_copy, round(AVG(score)::numeric, 2) AS user_score FROM feedback GROUP BY provnum_copy; CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
     $result = pg_query($this->conn, $sql);
@@ -181,11 +181,15 @@ class db_functions {
     $result = pg_query($this->conn, $sql);
     $row = pg_fetch_assoc($result);
 
-    echo "<div style=\" display: block; margin-top:0px !important; margin-left:0px;\"><ul><br>";
     echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
     echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
     echo "Phone: ".$row['phone']."<br>";
-    echo "Ownership Type: ".$row['ownership']."<br></div><br><br>";
+    echo "Ownership Type: ".$row['ownership']."<br></div>";
+
+    echo "<center>";
+    if($usertype == 'u')
+    echo "<a href=\"give_feedback_html.php?provnum=".$row['provnum']."\">GIVE FEEDBACK</a>&emsp;&emsp;";
+    echo "<a href=\"view_feedback.php?provnum=".$row['provnum']."\">VIEW FEEDBACK</a></center><br><br>";
 
     echo "<center><table border='1'><tr><th>Overall Rating</th><th>Health Inspection Rating</th><th>QM Rating</th><th>Staffing Rating</th><th>RN Staffing Rating</th><th>User Rating</th><th>No. of Certified Beds</th><th>No. of Residents in Certified Beds</th><th>Provider Type</th><th>Provider Resides in Hospital</th><th>Continuing Care Retirement Community</th><th>Special Focus Facility</th><th>With a Resident and Family Council</th><th>Automatic Sprinkler Systems</th><th>Cycle1 Health Deficiency Score</th><th>Cycle1 Health Revisit Score</th><th>Cycle1 Total Health Score</th><th>Cycle2 Health Deficiency Score</th><th>Cycle2 Health Revisit Score</th><th>Cycle2 Total Health Score</th><th>Cycle3 Health Deficiency Score</th><th>Cycle3 Health Revisit Score</th><th>Cycle3 Total Health Score</th><th>Weighted Health Survey Score</th><th>No. of Facility Reported Incidents</th><th>No. of Substantiated Complaints</th><th>Processing Date</th></tr>";
 

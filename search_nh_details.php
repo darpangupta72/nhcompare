@@ -1,12 +1,12 @@
 <?php
 
-$name= 'Random user';
+$usertype= 'u';
 session_start();
 if(!isset($_SESSION['username'])) {
  //    header("Location: login_html.php");
 }
 else {
-    $name=$_SESSION['username'];
+    $usertype=$_SESSION['usertype'];
 }
 
 ?>
@@ -69,8 +69,9 @@ if (isset($_GET['provnum'])) {
     // receiving the get params
     $provnum = $_GET['provnum'];
     // search and display from the database where $type = $field
-    $db->details_nh($provnum);
-
+    echo "<div style=\" margin-top:0px !important; margin-left:25%;\"><ul><br>";
+    $db->details_nh($provnum,$usertype);
+    
 } else {
 
     // required parameters missing
