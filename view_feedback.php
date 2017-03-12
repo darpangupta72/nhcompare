@@ -52,4 +52,9 @@ if(isset($_POST['command']))
     session_destroy();
     header("Location: login_html.php");
 }
+
+if(isset($_GET['provnum'])) {
+    $a=$_GET['provnum'];
+    echo "WElcome to $a";
+}
 ?>
