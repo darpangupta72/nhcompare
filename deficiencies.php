@@ -1,5 +1,5 @@
 <?php
-$name= 'Random user';
+$name= '';
  session_start();
  if(!isset($_SESSION['username'])){
  //    header("Location: login_html.php");
@@ -41,15 +41,27 @@ $name= 'Random user';
                 <button name="command" value="logout">LOGOUT</button>
             </label>
         </form>
+        <div style=" position: absolute; top: 25%; left: 0%">
+            <ul>
+                <form action = "deficiencies.php" method="POST">
+                    <?php echo "<input type=\"hidden\" name=\"provnum\" value=\"$name\">"; ?>
+                    <input type="submit" value="Show">
+                </form>
+            </ul>            
+        </div>
     </body>
 
 </html>    
 
 <?php
-if(isset($_POST['command']))
-{
+if(isset($_POST['command'])) {
     session_unset();
     session_destroy();
     header("Location: login_html.php");
 }
+
+if(isset($_POST['provnum'])) {
+    
+}
+
 ?>
