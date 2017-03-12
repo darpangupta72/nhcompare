@@ -4,7 +4,8 @@ $name= '';$usertype='s';
  if(!isset($_SESSION['username'])){
  //    header("Location: login_html.php");
  }
- else {$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
+ else {$name=$_SESSION['username'];
+        $usertype=$_SESSION['usertype'];}
 ?>
 
 <html>
@@ -44,15 +45,14 @@ $name= '';$usertype='s';
           </label>
         </form>
 
-        <div style=" position: absolute; top: 25%; left: 0%">
+        <div style=" position: absolute; top: 25%; left: 38%">
             <ul>
                 <form action = "login_manage_html.php" method="POST">
-                    <li>Type of Operation: <select name="type" id="type">
+                    Operation: <select name="type" id="type">
                             <option value = "insert">Insert</option>
                             <option value = "delete">Delete</option>
                         </select>
-                    </li><br>
-                    <input type="submit" value="Change">
+                    &emsp;&emsp;<input type="submit" value="Change">
                 </form>
             </ul>            
         </div>
@@ -65,15 +65,15 @@ $name= '';$usertype='s';
 if(isset($_POST['type'])){
 
     $command=$_POST['type'];$name='';
-    echo "<div style=\" position: absolute; top: 50%; left: 38%\"><ul>";
-    echo "<center><form action = \"login_manage.php\" method=\"POST\">";
+    echo "<div style=\" position: absolute; top: 35%; left: 38%\"><ul>";
+    echo "<center><form action = \"login_manage_html.php\" method=\"POST\">";
     echo "<li>Username: <input type=\"text\" name=\"username\" /></li>";
 
     switch ($command) {
         case 'insert':
             $name='Insert';
             echo "<li>Password:  <input type=\"password\" name=\"password\" /></li><br>";
-            echo "<li>Search On: <select name=\"type\" id=\"type\">";
+            echo "<li>Usertype: <select name=\"type\" id=\"type\">";
              echo "<option value = \"u\">General User</option>";
              echo "<option value = \"n\">Nursing Home</option>";
              if($usertype=='s')
@@ -82,6 +82,10 @@ if(isset($_POST['type'])){
             break;
         case 'delete':
             $name = 'Delete';
+            echo "<br>";
+            break;
+        default:
+            $name='No Value Set';
             echo "<br>";
             break;
     }
@@ -96,10 +100,13 @@ if(isset($_POST['command'])) {
             session_destroy();
             header("Location: login_html.php");
             break;
-        default:
-            echo "<center><div style=\" display: block; margin-top:80px !important;\"><ul>";
+        case 'insert':
+        case 'delete':
+            echo "<center><div style=\" \">";
             require_once 'login_manage.php';
             echo "</div></center>";
+            break;    
+        default:
             break;
     }
 }
