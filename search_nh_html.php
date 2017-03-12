@@ -81,10 +81,6 @@ if(isset($_GET['command'])) {
         case 'submit':
             require_once 'search_nh.php';
             break;
-
-        case 'show':
-            
-            break;
         default:
             # code...
             break;

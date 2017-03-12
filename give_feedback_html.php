@@ -6,7 +6,6 @@ $name= 'Random user';
  }
  else {$name=$_SESSION['username'];}
  ?>
-
 <html>
     <head>
         <title>NORMAL USER TOGGLE MENU</title>
@@ -37,31 +36,14 @@ $name= 'Random user';
             <h2 > <font color=#000000>NURSING HOME COMPARE</font></h2>
             <h4> <font color=#000000><i>A system to compare nursing homes across USA</i></font></h4><hr>
         </center>
-        <center>
-            <font color=#000000>Welcome <?php echo "$name"; ?></font>
-        </center>
-
-<form method="post">
-  <label class="logoutLblPos">
-  <button name="command" value="logout">LOGOUT</button>
-  </label>
-</form>
-
-        <div style=" position: relative; top: 50%;">
-            
-            <ul>
-            <center>
-                <br>
-                <a href="search_nh_html.php">SEARCH NURSING HOMES</a>
-                &emsp;&emsp;&emsp;
-                <a href="">GIVE FEEDBACK</a>
-            </center>
-            </ul>
-        </div>
+        <form method="post">
+            <label class="logoutLblPos">
+                <button name="command" value="logout">LOGOUT</button>
+            </label>
+        </form>
     </body>
 
-</html>
-
+</html>    
 
 <?php
 if(isset($_POST['command']))
