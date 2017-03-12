@@ -49,7 +49,6 @@
             <ul>
                 <form action = "search_nh_html.php" method="GET">
                     <li>Search On: <select name="type" id="type">
-                            <option value="select">--SELECT--</option>
                             <option value = "city">City</option>
                             <option value = "county_name">County Name</option>
                             <option value = "county_ssa">County SSA Code</option>
@@ -57,7 +56,7 @@
                             <option value = "zip">Zip Code</option>
                         </select>
                     </li><br>
-                    <input type="submit" value="Show">
+                    <input type="submit" value="Change">
                 </form>
             </ul>
         </div>
@@ -106,6 +105,15 @@ if(isset($_GET['type'])){
                     echo "<form action = \"search_nh_html.php\" method=\"GET\">";
                     echo "<input type=\"hidden\" name=\"type\" value=\"$type\">";
                     echo "<li> $name: <input type=\"text\" name=\"field\" /></li><br>";
+                    echo "<li>Search On: <select name=\"order\" id=\"order\">";
+                        echo "<option value = \"overall_rating\">Overall Rating</option>";
+                        echo "<option value = \"survey_rating\">Health Inspection Rating</option>";
+                        echo "<option value = \"quality_rating\">QM Rating</option>";
+                        echo "<option value = \"staffing_rating\">Staffing Rating</option>";
+                        echo "<option value = \"rn_staffing_rating\">RN Staffing Rating</option>";
+                        echo "<option value = \"weighted_all_cycles_score\">Health Survey Score</option>";
+                        echo "<option value = \"user_score\">User Rating</option>";
+                    echo "</select></li><br>";
                     echo "<li>&emsp;&emsp;&emsp;<button name=\"command\" value=\"submit\">SUBMIT</button></li></form></ul></div>";  
                 }
 }
