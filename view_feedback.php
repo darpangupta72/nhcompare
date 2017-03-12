@@ -53,8 +53,23 @@ if(isset($_POST['command']))
     header("Location: login_html.php");
 }
 
-if(isset($_GET['provnum'])) {
-    $a=$_GET['provnum'];
-    echo "WElcome to $a";
+require_once 'db_functions.php';
+$db = new db_functions();
+
+// provnum parameter received 
+if (isset($_GET['provnum'])) {
+
+    // receiving the get params
+    $provnum = $_GET['provnum'];
+    // search and display from the database where $type = $field
+    $db->view_feedback($provnum);
+    
+} else {
+
+    // required parameters missing
+    $error_msg = "Required parameters missing!";
+    echo "<center>$error_msg</center>";
+
 }
+
 ?>

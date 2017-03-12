@@ -239,7 +239,6 @@ class db_functions {
     return TRUE;
 
   }
-
   function show_deficiencies($provnum) {
     $sql = "CREATE VIEW V2 AS SELECT provnum as provnum_copy, defpref, tag, scope, defstat, statdate, cycle_no, standard,complaint FROM deficiencies ;CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
     $result = pg_query($this->conn, $sql);
@@ -270,6 +269,40 @@ class db_functions {
     
 
     $sql = "DROP VIEW V1, V2";
+
+  function view_feedback($provnum) {
+
+  	$sql = "CREATE VIEW V1 AS SELECT * FROM feedback WHERE provnum = '$provnum' ORDER BY feedback_id";
+    $result = pg_query($this->conn, $sql);
+    $sql = "SELECT COUNT(*) FROM V1";
+    $result = pg_query($this->conn, $sql);
+    $count = pg_fetch_assoc($result)['count'];
+    
+    $sql = "SELECT * FROM V1";
+    $result = pg_query($this->conn, $sql);
+
+    echo "<br><center>Your search returned " . $count . " results.</center><br>";
+
+    if($count > 0) {
+      
+      echo "<center><table border='1'><tr><th>Feedback ID</th><th>Username</th><th>Provider Number</th><th>Score</th><th>Description</th><th>Timestamp</th></tr>";
+
+      while($row = pg_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td><center>".$row['feedback_id']."</center></td>";
+        echo "<td><center>".$row['username']."</center></td>";
+        echo "<td><center>".$row['provnum']."</center></td>";
+        echo "<td><center>".$row['score']."</center></td>";
+        echo "<td><center>".$row['score_desc']."</center></td>";
+        echo "<td><center>".$row['time']."</center></td>";
+        echo "</tr>";    
+      }
+
+      echo "</table></center>";
+
+    }
+
+    $sql = "DROP VIEW V1";
     $result = pg_query($this->conn, $sql);
 
   }  

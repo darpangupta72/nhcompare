@@ -14,6 +14,8 @@ if (isset($_POST['username']) && isset($_POST['provnum']) && isset($_POST['score
     // search and display from the database where $type = $field
     if($db->store_feedback($username, $provnum, $score, $comment) == FALSE)
     	echo "<center>An unexpected error occurred!</center>";
+    else
+    	header("Location: search_nh_details.php?provnum=" . $provnum."&feedback=yes");
 
 } else {
 
