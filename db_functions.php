@@ -172,6 +172,27 @@ class db_functions {
   
   }
 
+  function details_nh($provnum) {
+
+  	$sql = "SELECT * FROM provider_info WHERE provnum = '$provnum'";
+    $result = pg_query($this->conn, $sql);
+    $row = pg_fetch_assoc($result);
+
+    echo "<div style=\" display: block; margin-top:0px !important; margin-left:0px;\"><ul><br>";
+    echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
+    echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
+    echo "Phone: ".$row['phone']."<br>";
+    echo "Ownership Type: ".$row['ownership']."<br></div>";
+
+    // echo "<center>Provider: ".$row['provnum'].", ".$row['provname']."</center>";
+    // echo "<center>Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA</center>";
+    // echo "<center>Phone: ".$row['phone']."</center>";
+    // echo "<center>Ownership Type: ".$row['ownership']."</center>";
+
+
+
+  }  
+
 }
 
 ?>

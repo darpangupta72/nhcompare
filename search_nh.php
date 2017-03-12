@@ -6,7 +6,7 @@ $db = new db_functions();
 // both parameters received 
 if (isset($_GET['type']) && isset($_GET['field']) && isset($_GET['order'])) {
 
-    // receiving the post params
+    // receiving the get params
     $type = $_GET['type'];
     $field = $_GET['field'];
     $order = $_GET['order'];

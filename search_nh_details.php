@@ -1,11 +1,17 @@
 <?php
+
 $name= 'Random user';
- session_start();
- if(!isset($_SESSION['username'])){
+session_start();
+if(!isset($_SESSION['username'])) {
  //    header("Location: login_html.php");
- }
- else {$name=$_SESSION['username'];}
- ?>
+}
+else {
+    $name=$_SESSION['username'];
+}
+
+?>
+
+
 <html>
     <head>
         <title>NORMAL USER TOGGLE MENU</title>
@@ -46,10 +52,31 @@ $name= 'Random user';
 </html>    
 
 <?php
+
 if(isset($_POST['command']))
 {
     session_unset();
     session_destroy();
     header("Location: login_html.php");
 }
+
+require_once 'db_functions.php';
+$db = new db_functions();
+
+// provnum parameter received 
+if (isset($_GET['provnum'])) {
+
+    // receiving the get params
+    $provnum = $_GET['provnum'];
+    // search and display from the database where $type = $field
+    $db->details_nh($provnum);
+
+} else {
+
+    // required parameters missing
+    $error_msg = "Required parameters missing!";
+    echo "<center>$error_msg</center>";
+
+}
+
 ?>
