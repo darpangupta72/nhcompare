@@ -4,13 +4,14 @@ require_once 'db_functions.php';
 $db = new db_functions();
 
 // both parameters received 
-if (isset($_GET['type']) && isset($_GET['field'])) {
+if (isset($_GET['type']) && isset($_GET['field']) && isset($_GET['order'])) {
 
     // receiving the post params
     $type = $_GET['type'];
     $field = $_GET['field'];
+    $order = $_GET['order'];
     // search and display from the database where $type = $field
-    $db->search_nh($type, $field);
+    $db->search_nh($type, $field, $order);
 
 } else {
 

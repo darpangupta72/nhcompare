@@ -66,7 +66,7 @@ ORDER
 DONE 0. DG - delete columns fn from provider_info
 DONE 1. PK - create table as in point 5 topmost
 DONE 2. PK - send "search_nh.php" a order param for order by clause 
-2. DG - Screen 5 add columns to be printed and order them
+DONE 2. DG - Screen 5 add columns to be printed and order them
 DONE 3. PK - align input form in screen 5 push the output table downwards. Rest table formatting to be done later
 DONE 4. DG - create blank(with the header) .php files for screens 6,7b,8,10,11
 2,4. PK - Add hyperlink to screen 5 as written above.

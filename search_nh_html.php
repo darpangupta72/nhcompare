@@ -78,7 +78,7 @@ if(isset($_GET['command'])) {
             break;
         
         case 'submit':
-            echo "<center><div style=\" display: block; margin-top:80px !important;\"><ul>";
+            echo "<center><div style=\" display: block; margin-top:80px !important;\"><ul><br>";
             require_once 'search_nh.php';
             echo "</div></center>";
             break;
