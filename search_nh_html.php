@@ -8,7 +8,7 @@
  else{$name=$_SESSION['username'];}
 ?>
  
-<html>
+<!DOCTYPE html>
     <head>
         <title>SEARCH NURSING HOME</title>
     
@@ -48,11 +48,11 @@
         <div style=" position: absolute; top: 30%; left:0cm">
             <ul>
                 <form action = "search_nh_html.php" method="POST">
-                    <li>Zip Code: <input type="text" name="zip" /></li><br>
-                    <li>Zip Code: <input type="text" name="zip" /></li><br>
-                    <li>Zip Code: <input type="text" name="zip" /></li><br>
-                    <li>Zip Code: <input type="text" name="zip" /></li><br>
-                    <li>Zip Code: <input type="text" name="zip" /></li><br>
+                    <li>Zip Code: <input type="text" name="" /></li><br>
+                    <li>Zip Code: <input type="text" name="" /></li><br>
+                    <li>Zip Code: <input type="text" name="" /></li><br>
+                    <li>Zip Code: <input type="text" name="" /></li><br>
+                    <li>Zip Code: <input type="text" name="" /></li><br>
                     <li>Zip Code: <input type="text" name="zip" /></li><br>
                     <li>&emsp;&emsp;&emsp;<button name="command" value="submit">SUBMIT</button></li>
                 </form>
