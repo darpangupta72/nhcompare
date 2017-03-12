@@ -134,7 +134,7 @@ class db_functions {
 
     }
 
-    $sql = "CREATE TABLE V1 AS SELECT * FROM provider_info; ALTER TABLE V1 ADD COLUMN user_score numeric; UPDATE V1 SET user_score = (SELECT round(AVG(score)::numeric, 2) FROM feedback GROUP BY feedback.provnum) FROM feedback WHERE V1.provnum = feedback.provnum;";
+    $sql = "CREATE VIEW V2 AS SELECT provnum AS provnum_copy, round(AVG(score)::numeric, 2) AS user_score FROM feedback GROUP BY provnum_copy; CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
     $result = pg_query($this->conn, $sql);
 
     $sql = "CREATE VIEW NH AS SELECT provnum, provname, " . $final . " FROM V1 WHERE UPPER($type) = UPPER('$field') ORDER BY " . $final1 . " DESC NULLS LAST, provnum DESC; SELECT count(*) FROM NH";
@@ -167,14 +167,14 @@ class db_functions {
 
     }
 
-    $sql = "DROP VIEW NH; DROP TABLE V1";
+    $sql = "DROP VIEW V1, V2, NH";
     $result = pg_query($this->conn, $sql);
   
   }
 
   function details_nh($provnum) {
 
-  	$sql = "CREATE TABLE V1 AS SELECT * FROM provider_info; ALTER TABLE V1 ADD COLUMN user_score numeric; UPDATE V1 SET user_score = (SELECT round(AVG(score)::numeric, 2) FROM feedback GROUP BY feedback.provnum) FROM feedback WHERE V1.provnum = feedback.provnum;";
+  	$sql = "CREATE VIEW V2 AS SELECT provnum AS provnum_copy, round(AVG(score)::numeric, 2) AS user_score FROM feedback GROUP BY provnum_copy; CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
     $result = pg_query($this->conn, $sql);
 
   	$sql = "SELECT * FROM V1 WHERE provnum = '$provnum'";
@@ -220,8 +220,19 @@ class db_functions {
     echo "</tr>";    
 
     echo "</table></center>";
-    $sql = "DROP TABLE V1";
+    $sql = "DROP VIEW V1, V2";
     $result = pg_query($this->conn, $sql);
+
+  }
+
+  function store_feedback($username, $provnum, $score, $comment) {
+  
+    $sql = "INSERT INTO feedback(username, provnum, score, score_desc) VALUES('$username', '$provnum', '$score', '$comment')";
+    $result = pg_query($this->conn, $sql);
+
+    if(! $result) 
+      return FALSE;
+    return TRUE;
 
   }  
 
