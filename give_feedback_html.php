@@ -48,8 +48,8 @@ $name= '';$provnum='';
         </form>
 
         <center><div style=" position: relative; top: 20%;">
-            <ul><?php echo "Welcome $name, we would like to know your feedback about $provnum<br>"; ?>
-                <form action = "give_feedback_html.php" name="feedback" method="POST">
+            <ul><?php echo "Welcome $name, we would like to know your feedback about $provnum<br>"; ?><br>
+                <form action = "give_feedback_html.php" id="feedback" method="POST">
                     <?php 
                         echo "<input type=\"hidden\" name=\"username\" value=\"$name\">";
                         echo "<input type=\"hidden\" name=\"provnum\" value=\"$provnum\">";
