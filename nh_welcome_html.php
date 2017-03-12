@@ -50,7 +50,7 @@ else {$name=$_SESSION['username'];}
             <ul>
             <center>
             <br>
-                <a href="search_nh_html">SEARCH NURSING HOME</a>
+                <a href="search_nh_html.php">SEARCH NURSING HOME</a>
                 &emsp;&emsp;&emsp;
                 <a href="">SEE PENALTY COUNT</a>
                 &emsp;&emsp;&emsp;
