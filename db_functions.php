@@ -197,6 +197,26 @@ class db_functions {
     echo "<td><center>".$row['rn_staffing_rating']."</center></td>";
     echo "<td><center>".$row['user_score']."</center></td>";
     echo "<td><center>".$row['bedcert']."</center></td>";
+    echo "<td><center>".$row['restot']."</center></td>";
+    echo "<td><center>".$row['certification']."</center></td>";
+    echo "<td><center>".$row['inhosp']."</center></td>";
+    echo "<td><center>".$row['ccrc_facil']."</center></td>";
+    echo "<td><center>".$row['sff']."</center></td>";
+    echo "<td><center>".$row['resfamcouncil']."</center></td>";
+    echo "<td><center>".$row['sprinkler_status']."</center></td>";
+    echo "<td><center>".$row['cycle_1_defs_score']."</center></td>";
+    echo "<td><center>".$row['cycle_1_revisit_score']."</center></td>";
+    echo "<td><center>".$row['cycle_1_total_score']."</center></td>";
+    echo "<td><center>".$row['cycle_2_defs_score']."</center></td>";
+    echo "<td><center>".$row['cycle_2_revisit_score']."</center></td>";
+    echo "<td><center>".$row['cycle_2_total_score']."</center></td>";
+    echo "<td><center>".$row['cycle_3_defs_score']."</center></td>";
+    echo "<td><center>".$row['cycle_3_revisit_score']."</center></td>";
+    echo "<td><center>".$row['cycle_3_total_score']."</center></td>";
+    echo "<td><center>".$row['weighted_all_cycles_score']."</center></td>";
+    echo "<td><center>".$row['incident_cnt']."</center></td>";
+    echo "<td><center>".$row['cmplnt_cnt']."</center></td>";
+    echo "<td><center>".$row['filedate']."</center></td>";
     echo "</tr>";    
 
     echo "</table></center>";
