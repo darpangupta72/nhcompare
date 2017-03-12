@@ -63,7 +63,7 @@ details for screen 6: receive provnum by get
 							 "login_manage.php" receives POST params : command (insert/delete), username, password, type
 
 ORDER
-0. DG - delete columns fn from provider_info
+DONE 0. DG - delete columns fn from provider_info
 1. PK - create table as in point 5 topmost
 2. PK - send "search_nh.php" a order param for order by clause 
 2. DG - Screen 5 add columns to be printed and order them
