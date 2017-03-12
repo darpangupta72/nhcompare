@@ -53,8 +53,6 @@ $name= 'Random user';
             <center>
                 <br>
                 <a href="search_nh_html.php">SEARCH NURSING HOMES</a>
-                &emsp;&emsp;&emsp;
-                <a href="give_feedback_html.php">GIVE FEEDBACK</a>
             </center>
             </ul>
         </div>

@@ -52,13 +52,13 @@ else {$name=$_SESSION['username'];}
             <br>
                 <a href="search_nh_html.php">SEARCH NURSING HOME</a>
                 &emsp;&emsp;&emsp;
-                <a href="">SEE PENALTY COUNT</a>
+                <a href="penalties.php">SEE PENALTY COUNT</a>
                 &emsp;&emsp;&emsp;
-                <a href="">USER FEEDBACK TO YOUR NURSING HOME</a>
+                <?php echo "<a href=\"view_feedback.php?provnum=".$name."\">VIEW FEEDBACK</a>"; ?>
                 &emsp;&emsp;&emsp;
-                <a href="">STAFF INFO</a>
+                <a href="staff_info.php">STAFF INFO</a>
                 &emsp;&emsp;&emsp;
-                <a href="">INSPECTION RESULTS</a>&emsp;&emsp;
+                <a href="deficiencies.php">INSPECTION RESULTS</a>&emsp;&emsp;
             </center>
             </ul>
         </div>

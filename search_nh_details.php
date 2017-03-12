@@ -70,6 +70,8 @@ if (isset($_GET['provnum'])) {
     $provnum = $_GET['provnum'];
     // search and display from the database where $type = $field
     echo "<div style=\" margin-top:0px !important; margin-left:25%;\"><ul><br>";
+    if(isset($_GET['feedback']) && $_GET['feedback'] == "yes")
+        echo "Feedback successfully registered.<br><br>";
     $db->details_nh($provnum,$usertype);
     
 } else {
