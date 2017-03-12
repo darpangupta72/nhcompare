@@ -98,20 +98,33 @@ class db_functions {
 
   function search_nh($type, $field) {
 
-    $sql = "SELECT provnum, provname FROM provider_info WHERE $type = '$field'";
+    $sql = "CREATE VIEW NH AS SELECT provnum, provname FROM provider_info WHERE $type = '$field'; SELECT count(*) FROM NH";
+    $result = pg_query($this->conn, $sql);
+    $count = pg_fetch_assoc($result)['count'];
+    
+    $sql = "SELECT * FROM NH";
     $result = pg_query($this->conn, $sql);
 
-    echo "<center><table border='1'><tr><th>Provider No.</th><th>Provider Name</th></tr>";
+    echo "<br><center>Your search returned " . $count . " results.</center><br>";
 
-    while($row = pg_fetch_assoc($result)) {
-      echo "<tr>";
-      echo "<td>".$row['provnum']."</td>";
-      echo "<td>".$row['provname']."</td>";
-      echo "</tr>";    
+    if($count > 0) {
+      
+      echo "<center><table border='1'><tr><th>Provider No.</th><th>Provider Name</th></tr>";
+
+      while($row = pg_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>".$row['provnum']."</td>";
+        echo "<td>".$row['provname']."</td>";
+        echo "</tr>";    
+      }
+
+      echo "</table></center>";
+
     }
 
-    echo "</table></center>";
-
+    $sql = "DROP VIEW NH";
+    $result = pg_query($this->conn, $sql);
+  
   }
 
 }
