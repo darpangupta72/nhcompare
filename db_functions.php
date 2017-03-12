@@ -152,7 +152,7 @@ class db_functions {
 
       while($row = pg_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td><center>".$row['provnum']."<center/></td>";
+        echo "<td><a href=\"search_nh_details.php?".$row['provnum']."\"><center>".$row['provnum']."<center/></a></td>";
         echo "<td>".$row['provname']."</td>";
         echo "<td><center>".$row[$order_list[0]]."<center/></td>";
         echo "<td><center>".$row[$order_list[1]]."<center/></td>";

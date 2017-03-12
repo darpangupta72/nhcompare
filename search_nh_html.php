@@ -71,7 +71,6 @@ if(isset($_GET['command'])) {
     switch ($_GET['command']) {
 
         case 'logout':
-
             session_unset();
             session_destroy();
             header("Location: login_html.php");
