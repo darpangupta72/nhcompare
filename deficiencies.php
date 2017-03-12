@@ -1,5 +1,5 @@
 <?php
-$name= '';
+$name= '015010';
  session_start();
  if(!isset($_SESSION['username'])){
  //    header("Location: login_html.php");
@@ -54,6 +54,10 @@ $name= '';
 </html>    
 
 <?php
+
+require_once 'db_functions.php';
+$db = new db_functions();
+
 if(isset($_POST['command'])) {
     session_unset();
     session_destroy();
@@ -61,7 +65,11 @@ if(isset($_POST['command'])) {
 }
 
 if(isset($_POST['provnum'])) {
-    
+
+    $provnum=$_POST['provnum'];
+    echo "<div style=\" margin-top:0px !important; margin-left:25%;\"><ul><br>";
+    $db->show_deficiencies($provnum);
+
 }
 
 ?>
