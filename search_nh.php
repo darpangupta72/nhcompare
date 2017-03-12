@@ -7,12 +7,13 @@ $success = FALSE;
 $error_msg = "";
 
 // both parameters received 
-if (isset($_POST['zip'])) {
+if (isset($_GET['type']) && isset($_GET['field'])) {
 
     // receiving the post params
-    $zip = $_POST['zip'];
-    // get the user by username and password
-    $db->search_nh($zip);
+    $type = $_GET['type'];
+    $field = $_GET['field'];
+    // search and display from the database where $type = $field
+    $db->search_nh($type, $field);
 
 } else {
 
