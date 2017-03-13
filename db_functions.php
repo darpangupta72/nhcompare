@@ -239,6 +239,7 @@ class db_functions {
     return TRUE;
 
   }
+
   function show_deficiencies($provnum) {
     $sql = "CREATE VIEW V2 AS SELECT provnum as provnum_copy, defpref, tag, scope, defstat, statdate, cycle_no, standard,complaint FROM deficiencies ;CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
     $result = pg_query($this->conn, $sql);
@@ -269,7 +270,8 @@ class db_functions {
     
 
     $sql = "DROP VIEW V1, V2";
-
+     $result = pg_query($this->conn, $sql);   
+}
   function view_feedback($provnum) {
 
   	$sql = "CREATE VIEW V1 AS SELECT * FROM feedback WHERE provnum = '$provnum' ORDER BY feedback_id";
