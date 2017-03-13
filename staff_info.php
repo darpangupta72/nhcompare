@@ -1,16 +1,17 @@
 <?php
-$name= 'Random user';
+$name= '';$usertype='a';
  session_start();
  if(!isset($_SESSION['username'])){
  //    header("Location: login_html.php");
  }
- else {$name=$_SESSION['username'];}
+ else {$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
  ?>
 <html>
     <head>
-        <title>NORMAL USER TOGGLE MENU</title>
+        <title>STAFF INFO</title>
     
          <style>
+            li{list-style: none;}
             body{
                     background-color: #FFFFFF;
                     background: url(123.jpg) center;
@@ -41,15 +42,45 @@ $name= 'Random user';
                 <button name="command" value="logout">LOGOUT</button>
             </label>
         </form>
+
+        <div style=" position: absolute; top: 25%; left: 0%">
+            <ul>
+                <?php
+                    if($usertype == 'a' || $usertype == 'n' || $usertype == 's') {
+                        echo "<form action = \"staff_info.php\" method=\"POST\">";
+                            if($usertype == 'n') 
+                                echo "<input type=\"hidden\" name=\"provnum\" value=\"$name\">";
+                            else if($usertype == 'a' || $usertype == 's') 
+                                echo "<li>Provider No.: <input type=\"text\" name=\"provnum\">";
+                        echo "<input type=\"submit\" value=\"Show\"></form></li>";
+                    }
+                    else echo "You are not authorised to view the staff info";                    
+                ?>
+            </ul>            
+        </div>
     </body>
 
 </html>    
 
 <?php
-if(isset($_POST['command']))
-{
+require_once 'db_functions.php';
+$db = new db_functions();
+
+if(isset($_POST['command'])) {
     session_unset();
     session_destroy();
     header("Location: login_html.php");
 }
+
+if(isset($_POST['provnum'])) {
+
+    $provnum=$_POST['provnum'];
+    if($usertype != 'n' ||$usertype != 'a' ||$usertype != 's'){
+        echo "<div style=\" margin-top:0px !important; margin-left:25%;\"><ul><br>";
+        $db->staff_info($provnum);
+    }
+    else {}
+
+}
+
 ?>

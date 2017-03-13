@@ -253,25 +253,27 @@ class db_functions {
     echo "Phone: ".$row['phone']."<br>";
     echo "Ownership Type: ".$row['ownership']."<br></div>";
     echo "<center><table border='1'><tr><th>defpref</th><th>tag</th><th>scope</th><th>defstat</th><th>statdate</th><th>cycle_no</th><th>standard</th><th>complaint</th><th>filedate</th></tr>";
+    $result = pg_query($this->conn, $sql);
+    
     while($row = pg_fetch_assoc($result)) {
-    echo "<tr>";
-    echo "<td><center>".$row['defpref']."</center></td>";
-    echo "<td><center>".$row['tag']."</center></td>";
-    echo "<td><center>".$row['scope']."</center></td>";
-    echo "<td><center>".$row['defstat']."</center></td>";
-    echo "<td><center>".$row['statdate']."</center></td>";
-    echo "<td><center>".$row['cycle_no']."</center></td>";
-    echo "<td><center>".$row['standard']."</center></td>";
-    echo "<td><center>".$row['complaint']."</center></td>";;
-    echo "<td><center>".$row['filedate']."</center></td>";
-    echo "</tr>";    
+      echo "<tr>";
+      echo "<td><center>".$row['defpref']."</center></td>";
+      echo "<td><center>".$row['tag']."</center></td>";
+      echo "<td><center>".$row['scope']."</center></td>";
+      echo "<td><center>".$row['defstat']."</center></td>";
+      echo "<td><center>".$row['statdate']."</center></td>";
+      echo "<td><center>".$row['cycle_no']."</center></td>";
+      echo "<td><center>".$row['standard']."</center></td>";
+      echo "<td><center>".$row['complaint']."</center></td>";;
+      echo "<td><center>".$row['filedate']."</center></td>";
+      echo "</tr>";    
     }
     echo "</table></center>";
     
 
     $sql = "DROP VIEW V1, V2";
-     $result = pg_query($this->conn, $sql);   
-}
+    $result = pg_query($this->conn, $sql);   
+  }
   function view_feedback($provnum) {
 
   	$sql = "CREATE VIEW V1 AS SELECT * FROM feedback WHERE provnum = '$provnum' ORDER BY feedback_id";
@@ -308,6 +310,80 @@ class db_functions {
     $result = pg_query($this->conn, $sql);
 
   }  
+
+  function staff_info($provnum) {
+    $sql = "CREATE VIEW V1 AS SELECT provname, address, city, state, zip, phone, ownership, provnum, staffing_rating, rn_staffing_rating, aidhrd, vochrd, rnhrd, totlichrd, tothrd, pthrd, exp_aide, exp_lpn, exp_rn, exp_total, adj_aide, adj_lpn, adj_rn, adj_total, filedate FROM provider_info";
+    $result = pg_query($this->conn, $sql);
+
+    $sql = "SELECT * FROM V1 WHERE provnum = '$provnum'";
+    $result = pg_query($this->conn, $sql);
+    $row = pg_fetch_assoc($result);
+
+    echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
+    echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
+    echo "Phone: ".$row['phone']."<br>";
+    echo "Ownership Type: ".$row['ownership']."<br></div>";
+    echo "<center><table border='1'><tr><th>staffing_rating</th><th>rn_staffing_rating</th><th>aidhrd</th><th>vochrd</th><th>rnhrd</th><th>totlichrd</th><th>tothrd</th><th>pthrd</th><th>exp_aid</th><th>exp_lpn</th><th>exp_m</th><th>exp_total</th><th>adj_aid</th><th>adj_lpn</th><th>adj_m</th><th>adj_total</th><th>filedate</th></tr>";
+    $result = pg_query($this->conn, $sql);
+    while($row = pg_fetch_assoc($result)) {
+      echo "<tr>";
+      echo "<td><center>".$row['staffing_rating']."</center></td>";
+      echo "<td><center>".$row['rn_staffing_rating']."</center></td>";
+      echo "<td><center>".$row['aidhrd']."</center></td>";
+      echo "<td><center>".$row['vochrd']."</center></td>";
+      echo "<td><center>".$row['rnhrd']."</center></td>";
+      echo "<td><center>".$row['totlichrd']."</center></td>";
+      echo "<td><center>".$row['tothrd']."</center></td>";
+      echo "<td><center>".$row['pthrd']."</center></td>";
+      echo "<td><center>".$row['exp_aide']."</center></td>";
+      echo "<td><center>".$row['exp_lpn']."</center></td>";
+      echo "<td><center>".$row['exp_rn']."</center></td>";
+      echo "<td><center>".$row['exp_total']."</center></td>";
+      echo "<td><center>".$row['adj_aide']."</center></td>";
+      echo "<td><center>".$row['adj_lpn']."</center></td>";
+      echo "<td><center>".$row['adj_rn']."</center></td>";
+      echo "<td><center>".$row['adj_total']."</center></td>";
+      echo "<td><center>".$row['filedate']."</center></td>";
+      echo "</tr>";    
+    }
+    echo "</table></center>";
+    
+
+    $sql = "DROP VIEW V1";
+     $result = pg_query($this->conn, $sql);   
+  }
+
+  function show_penalties($provnum) {
+    $sql = "CREATE VIEW V1 AS SELECT provnum, provname, address, city, state, zip, phone, ownership, filedate FROM provider_info";
+    $result = pg_query($this->conn, $sql);
+
+    $sql = "SELECT * from V1 WHERE provnum = '$provnum'";
+    $result = pg_query($this->conn, $sql);
+    $row = pg_fetch_assoc($result);
+
+    echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
+    echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
+    echo "Phone: ".$row['phone']."<br>";
+    echo "Ownership Type: ".$row['ownership']."<br></div>";
+    echo "<center><table border='1'><tr><th>pnlty_date</th><th>pnlty_type</th><th>fine_amt</th><th>payden_strt_dt</th><th>payden_days</th><th>filedate</th></tr>";
+    $sql = "SELECT penalty_date, penalty_type, fine_amt, payden_strt_dt, payden_days, filedate FROM penalties where provnum = '$provnum' ";
+    $result = pg_query($this->conn, $sql);
+    while($row = pg_fetch_assoc($result)) {
+      echo "<tr>";
+      echo "<td><center>".$row['penalty_date']."</center></td>";
+      echo "<td><center>".$row['penalty_type']."</center></td>";
+      echo "<td><center>".$row['fine_amt']."</center></td>";
+      echo "<td><center>".$row['payden_strt_dt']."</center></td>";
+      echo "<td><center>".$row['payden_days']."</center></td>";
+      echo "<td><center>".$row['filedate']."</center></td>";
+      echo "</tr>";    
+    }
+    echo "</table></center>";
+    
+
+    $sql = "DROP VIEW V1";
+    $result = pg_query($this->conn, $sql);  
+  }
 
 }
 

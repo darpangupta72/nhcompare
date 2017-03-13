@@ -1,5 +1,5 @@
 <?php
-$name= '015010';$usertype='u';
+$name= '015010';$usertype='a';
  session_start();
  if(!isset($_SESSION['username'])){
  //    header("Location: login_html.php");
@@ -8,7 +8,7 @@ $name= '015010';$usertype='u';
  ?>
 <html>
     <head>
-        <title>NORMAL USER TOGGLE MENU</title>
+        <title>VIEW INSPECTION RESULTS</title>
     
          <style>
             li{list-style: none;}
