@@ -34,22 +34,13 @@
     </head>
     
     <body>
-        <?php
-            require_once 'logout_home.php';
-        ?>
         <center>
             <h2> <font color=#000000>NURSING HOME COMPARE</font></h2>
             <h4> <i><font color=#000000 >A system to compare nursing homes across USA</font></i></h4><hr>
         </center>
-
-        <form method="get">
-            <label class="logoutLblPos">
-                <button name="command" value="home">HOME</button>
-                &emsp;&emsp;&emsp;
-                <button name="command" value="logout">LOGOUT</button>
-            </label>
-        </form>
-
+        <?php
+            require_once 'logout_home.php';
+        ?>
         <div style=" position: absolute; top: 20%; left:0cm">
             <ul>
                 <form action = "search_nh_html.php" method="GET">
