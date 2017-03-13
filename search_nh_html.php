@@ -34,6 +34,9 @@
     </head>
     
     <body>
+        <?php
+            require_once 'logout_home.php';
+        ?>
         <center>
             <h2> <font color=#000000>NURSING HOME COMPARE</font></h2>
             <h4> <i><font color=#000000 >A system to compare nursing homes across USA</font></i></h4><hr>
@@ -41,6 +44,8 @@
 
         <form method="get">
             <label class="logoutLblPos">
+                <button name="command" value="home">HOME</button>
+                &emsp;&emsp;&emsp;
                 <button name="command" value="logout">LOGOUT</button>
             </label>
         </form>
@@ -81,8 +86,14 @@ if(isset($_GET['command'])) {
             require_once 'search_nh.php';
             echo "</div></center>";
             break;
+        case 'home':
+            if($usertype == 'a' || $usertype == 's')
+                header("Location: admin_welcome_html.php");
+            else if($usertype == 'n')
+                    header("Location: search_nh_html.php");
+                 else
+                    header("Location: general_user_html.php");                
         default:
-            # code...
             break;
     }
 

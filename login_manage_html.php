@@ -28,7 +28,7 @@ $name= '';$usertype='s';
                 margin-bottom: 0.4cm;
             }
         </style>
-            <?<?php 
+            <?php 
                 require_once('styling.php');
             ?>
         
@@ -39,12 +39,9 @@ $name= '';$usertype='s';
             <h2> <font color=#000000>NURSING HOME COMPARE</font></h2>
             <h4> <i><font color=#000000 >A system to compare nursing homes across USA</font></i></h4><hr>
         </center>
-        <form method="post">
-          <label class="logoutLblPos">
-              <button name="command" value="logout">LOGOUT</button>
-          </label>
-        </form>
-
+        <?php
+            require_once 'logout_home.php';
+        ?>
         <div style=" position: absolute; top: 25%; left: 38%">
             <ul>
                 <form action = "login_manage_html.php" method="POST">
@@ -67,7 +64,7 @@ if(isset($_POST['type'])){
     $command=$_POST['type'];$name='';
     echo "<div style=\" position: absolute; top: 35%; left: 38%\"><ul>";
     echo "<center><form action = \"login_manage_html.php\" method=\"POST\">";
-    echo "<li>Username: <input type=\"text\" name=\"username\" /></li>";
+    echo "<li>Username:<input type=\"text\" name=\"username\" /></li>";
 
     switch ($command) {
         case 'insert':
@@ -105,7 +102,15 @@ if(isset($_POST['command'])) {
             echo "<center><div style=\" \">";
             require_once 'login_manage.php';
             echo "</div></center>";
-            break;    
+            break; 
+        case 'home':
+            if($usertype == 'a' || $usertype == 's')
+                header("Location: admin_welcome_html.php");
+            else if($usertype == 'n')
+                    header("Location: search_nh_html.php");
+                 else
+                    header("Location: general_user_html.php");                
+            break;   
         default:
             break;
     }

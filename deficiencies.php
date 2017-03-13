@@ -27,7 +27,7 @@ $name= '015010';$usertype='a';
             }
 
         </style>
-            <?<?php 
+            <?php 
                 require_once('styling.php');
             ?>
     </head>
@@ -37,11 +37,9 @@ $name= '015010';$usertype='a';
             <h2 > <font color=#000000>NURSING HOME COMPARE</font></h2>
             <h4> <font color=#000000><i>A system to compare nursing homes across USA</i></font></h4><hr>
         </center>
-        <form method="post">
-            <label class="logoutLblPos">
-                <button name="command" value="logout">LOGOUT</button>
-            </label>
-        </form>
+        <?php
+            require_once 'logout_home.php';
+        ?>
         <div style=" position: absolute; top: 25%; left: 0%">
             <ul>
                 <?php
@@ -66,10 +64,25 @@ $name= '015010';$usertype='a';
 require_once 'db_functions.php';
 $db = new db_functions();
 
-if(isset($_POST['command'])) {
-    session_unset();
-    session_destroy();
-    header("Location: login_html.php");
+if(isset($_POST['command']))
+{   
+    switch ($_POST['command']) {
+        case 'logout':
+            session_unset();
+            session_destroy();
+            header("Location: login_html.php");
+            break;
+        case 'home':
+            if($usertype == 'a' || $usertype == 's')
+                header("Location: admin_welcome_html.php");
+            else if($usertype == 'n')
+                    header("Location: search_nh_html.php");
+                 else
+                    header("Location: general_user_html.php");                
+            break;   
+        default:
+            break;
+    }
 }
 
 if(isset($_POST['provnum'])) {

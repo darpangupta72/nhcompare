@@ -1,11 +1,13 @@
 <?php
-
+$name= ''; $usertype='a';
  session_start();
  if(!isset($_SESSION['username']))
  {
-    header("Location: login_html.php");
+   // header("Location: login_html.php");
  }
- $name=$_SESSION['username'];
+ else {
+    $name=$_SESSION['username'];$usertype=$_SESSION['usertype'];
+ }
  ?>
  
 <html>
@@ -42,11 +44,9 @@
             <font color=#000000>Welcome <?php echo "$name"; ?></font>
         </center>
 
-<form method="post">
-  <label class="logoutLblPos">
-  <button name="command" value="logout">LOGOUT</button>
-  </label>
-</form>
+        <?php
+            require_once 'logout_home.php';
+        ?>
         <div style=" position: relative; 
             top: 20%;">
             <ul>
@@ -66,9 +66,23 @@
 
 <?php
 if(isset($_POST['command']))
-{
-    session_unset();
-    session_destroy();
-    header("Location: login_html.php");
+{   
+    switch ($_POST['command']) {
+        case 'logout':
+            session_unset();
+            session_destroy();
+            header("Location: login_html.php");
+            break;
+        case 'home':
+            if($usertype == 'a' || $usertype == 's')
+                header("Location: admin_welcome_html.php");
+            else if($usertype == 'n')
+                    header("Location: search_nh_html.php");
+                 else
+                    header("Location: general_user_html.php");                
+            break;   
+        default:
+            break;
+    }
 }
 ?>
