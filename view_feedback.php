@@ -1,20 +1,22 @@
 <?php
-$name= 'Random user';
+$name= 'Random user';$usertype='u';
  session_start();
  if(!isset($_SESSION['username'])){
  //    header("Location: login_html.php");
  }
- else {$name=$_SESSION['username'];}
+ else {$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
  ?>
 <html>
     <head>
         <title>NORMAL USER TOGGLE MENU</title>
     
          <style>
+            li{list-style: none;}
             body{
                     background-color: #FFFFFF;
                     background: url(123.jpg) center;
-                }
+            }
+            
             h1, h2, h3, h5, h6 {
                  padding: 0;
                  margin-bottom: 0;
@@ -32,13 +34,20 @@ $name= 'Random user';
     </head>
     
     <body>
-        <?php
-            require_once 'logout_home.php';
-        ?>
         <center>
             <h2 > <font color=#000000>NURSING HOME COMPARE</font></h2>
             <h4> <font color=#000000><i>A system to compare nursing homes across USA</i></font></h4><hr>
         </center>
+        <?php
+            require_once 'logout_home.php';
+            if($usertype='s'||$usertype='a') {
+                echo "<form action = \"view_feedback.php\" method=\"GET\">";
+                echo "<li>Provider No.: <input type=\"text\" name=\"provnum\">";
+                echo "<input type=\"submit\" value=\"Show\"></form></li>";
+            }
+    
+        ?>
+
     </body>
 
 </html>    

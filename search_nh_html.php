@@ -1,11 +1,11 @@
 <?php
-
+$name='';$usertype='n';
  session_start();
  if(!isset($_SESSION['username']))
  {
     //header("Location: login_html.php");
  }
- else{$name=$_SESSION['username'];}
+ else{$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
 ?>
  
 <!DOCTYPE html>
@@ -62,9 +62,9 @@
 </html>
 
 <?php
-if(isset($_GET['command'])) {
+if(isset($_POST['command'])) {
 
-    switch ($_GET['command']) {
+    switch ($_POST['command']) {
 
         case 'logout':
             session_unset();
@@ -81,13 +81,19 @@ if(isset($_GET['command'])) {
             if($usertype == 'a' || $usertype == 's')
                 header("Location: admin_welcome_html.php");
             else if($usertype == 'n')
-                    header("Location: search_nh_html.php");
+                    header("Location: nh_welcome_html.php");
                  else
                     header("Location: general_user_html.php");                
         default:
             break;
     }
 
+}
+
+if(isset($_GET['command'])) {
+    echo "<center><div style=\" display: block; margin-top:80px !important;\"><ul><br>";
+            require_once 'search_nh.php';
+            echo "</div></center>";
 }
 
 if(isset($_GET['type'])){

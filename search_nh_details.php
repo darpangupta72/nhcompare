@@ -38,13 +38,13 @@ else {
     </head>
     
     <body>
-        <?php
-            require_once 'logout_home.php';
-        ?>
         <center>
             <h2 > <font color=#000000>NURSING HOME COMPARE</font></h2>
             <h4> <font color=#000000><i>A system to compare nursing homes across USA</i></font></h4><hr>
-        </center>        
+        </center> 
+        <?php
+            require_once 'logout_home.php';
+        ?>       
     </body>
 
 </html>    
