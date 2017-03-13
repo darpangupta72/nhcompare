@@ -134,10 +134,10 @@ class db_functions {
 
     }
 
-    $sql = "CREATE VIEW V2 AS SELECT provnum AS provnum_copy, round(AVG(score)::numeric, 2) AS user_score FROM feedback GROUP BY provnum_copy; CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
+    $sql = "CREATE VIEW T AS SELECT provnum AS provnum1, ROUND(AVG(score)::numeric, 2) AS user_score FROM feedback group by provnum1; CREATE VIEW U AS SELECT * FROM (provider_info LEFT OUTER JOIN T ON provider_info.provnum=t.provnum1);";
     $result = pg_query($this->conn, $sql);
 
-    $sql = "CREATE VIEW NH AS SELECT provnum, provname, " . $final . " FROM V1 WHERE UPPER($type) = UPPER('$field') ORDER BY " . $final1 . " DESC NULLS LAST, provnum DESC; SELECT count(*) FROM NH";
+    $sql = "CREATE VIEW NH AS SELECT provnum, provname, " . $final . " FROM U WHERE UPPER($type) = UPPER('$field') ORDER BY " . $final1 . " DESC NULLS LAST, provnum DESC; SELECT count(*) FROM NH";
     $result = pg_query($this->conn, $sql);
     $count = pg_fetch_assoc($result)['count'];
     
@@ -167,17 +167,17 @@ class db_functions {
 
     }
 
-    $sql = "DROP VIEW V1, V2, NH";
+    $sql = "DROP VIEW T, U, NH";
     $result = pg_query($this->conn, $sql);
   
   }
 
   function details_nh($provnum,$usertype) {
 
-  	$sql = "CREATE VIEW V2 AS SELECT provnum AS provnum_copy, round(AVG(score)::numeric, 2) AS user_score FROM feedback GROUP BY provnum_copy; CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
+    $sql = "CREATE VIEW T AS SELECT provnum AS provnum1, ROUND(AVG(score)::numeric, 2) AS user_score FROM feedback group by provnum1; CREATE VIEW U AS SELECT * FROM (provider_info LEFT OUTER JOIN T ON provider_info.provnum=t.provnum1);";
     $result = pg_query($this->conn, $sql);
 
-  	$sql = "SELECT * FROM V1 WHERE provnum = '$provnum'";
+  	$sql = "SELECT * FROM U WHERE provnum = '$provnum'";
     $result = pg_query($this->conn, $sql);
     $row = pg_fetch_assoc($result);
 
@@ -224,7 +224,7 @@ class db_functions {
     echo "</tr>";    
 
     echo "</table></center>";
-    $sql = "DROP VIEW V1, V2";
+    $sql = "DROP VIEW T, U";
     $result = pg_query($this->conn, $sql);
 
   }
