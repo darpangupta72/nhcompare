@@ -1,16 +1,17 @@
 <?php
-$name= '015010';
+$name= '015010';$usertype='u';
  session_start();
  if(!isset($_SESSION['username'])){
  //    header("Location: login_html.php");
  }
- else {$name=$_SESSION['username'];}
+ else {$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
  ?>
 <html>
     <head>
         <title>NORMAL USER TOGGLE MENU</title>
     
          <style>
+            li{list-style: none;}
             body{
                     background-color: #FFFFFF;
                     background: url(123.jpg) center;
@@ -43,10 +44,17 @@ $name= '015010';
         </form>
         <div style=" position: absolute; top: 25%; left: 0%">
             <ul>
-                <form action = "deficiencies.php" method="POST">
-                    <?php echo "<input type=\"hidden\" name=\"provnum\" value=\"$name\">"; ?>
-                    <input type="submit" value="Show">
-                </form>
+                <?php
+                    if($usertype == 'a' || $usertype == 'n' || $usertype == 's') {
+                        echo "<form action = \"deficiencies.php\" method=\"POST\">";
+                            if($usertype == 'n') 
+                                echo "<input type=\"hidden\" name=\"provnum\" value=\"$name\">";
+                            else if($usertype == 'a' || $usertype == 's') 
+                                echo "<li>Provider No.: <input type=\"text\" name=\"provnum\">";
+                        echo "<input type=\"submit\" value=\"Show\"></form></li>";
+                    }
+                    else echo "You are not authorised to view inspection results";                    
+                ?>
             </ul>            
         </div>
     </body>
@@ -67,8 +75,11 @@ if(isset($_POST['command'])) {
 if(isset($_POST['provnum'])) {
 
     $provnum=$_POST['provnum'];
-    echo "<div style=\" margin-top:0px !important; margin-left:25%;\"><ul><br>";
-    $db->show_deficiencies($provnum);
+    if($usertype != 'n' ||$usertype != 'a' ||$usertype != 's'){
+        echo "<div style=\" margin-top:0px !important; margin-left:25%;\"><ul><br>";
+        $db->show_deficiencies($provnum);
+    }
+    else {}
 
 }
 
