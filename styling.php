@@ -2,12 +2,12 @@
   <style>
     .homeLblPos{
     	position: absolute;
-    	right: 5cm;
+    	right: 2.2cm;
     	top: 100px;
     }
    .logoutLblPos{
       position: absolute;
-      right:40px;
+      right:0.2cm;
       top:100px;
     } </style>
 </html>

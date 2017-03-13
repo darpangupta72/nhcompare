@@ -87,5 +87,5 @@ DONE 7. DG - do 7b
 
 DONE 8. DG - Take username(assume nh) from $_SESSION['username'] 8,DONE 10, DONE 11
 DONE 9. PK - login management screen send params to login_manage.php
-9. DG - do "login_manage.php"
+DONE 9. DG - do "login_manage.php"
 10. DG - In screen 8 , 10, 11 when $provnum='' then currently empty result is being printed change this to blank i.e. no result (no of rows functionality).
