@@ -1,9 +1,9 @@
-1. Center alignment of input form in screen 5.
-2. Fix Log OUt button.
+DONE 1. Center alignment of input form in screen 5.
+DONE 2. Fix Log OUt button.
 DONE 3. add hyperlinks for 2 types of feedback on search_nh_details.php and go to 7a or 7b
 DONE 4. implement session to send provnum by get to 6 from 5: $_GET['provnum']
 DONE 5. create table for user feedback (name: feedback, columns: feedback_id (self_incrementing) primary key, username, provnum varchar(5), score (1-5),score_desc(250), 		 time timestamp)
-6. make home button on left of logout on all screens which takes user (type - 't') to resp. welcome screen
+DONE 6. make home button on left of logout on all screens which takes user (type - 't') to resp. welcome screen
 
 IF TIME
 1. deficiencies of details screen for user
