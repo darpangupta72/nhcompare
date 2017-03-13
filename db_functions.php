@@ -70,6 +70,17 @@ class db_functions {
 
   }
 
+  // deleting user from database
+  function deleteUser($username) {
+
+    $sql = "DELETE FROM login where username = '$username'";
+    $result = pg_query($this->conn, $sql);
+
+    if(! $result)
+      echo "<center>An unexpected error occurred!</center>";
+
+  }
+
   // editing user details in database
   function editUser($id, $passwordne, $name, $email, $mobile) {
 

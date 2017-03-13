@@ -9,7 +9,8 @@ IF TIME
 1. deficiencies of details screen for user
 2. functionalities to process data on diff. screens
 3. calculation of features from different which where orig. in provider_info (google docs)
-
+4. modify feedback
+5. edit user
 
 Functionality to be implemented
 
