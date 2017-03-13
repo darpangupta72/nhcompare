@@ -239,6 +239,36 @@ class db_functions {
     return TRUE;
 
   }
+  function show_deficiencies($provnum) {
+    $sql = "CREATE VIEW V2 AS SELECT provnum as provnum_copy, defpref, tag, scope, defstat, statdate, cycle_no, standard,complaint FROM deficiencies ;CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
+    $result = pg_query($this->conn, $sql);
+
+    $sql = "SELECT * FROM V1 WHERE provnum = '$provnum'";
+    $result = pg_query($this->conn, $sql);
+    $row = pg_fetch_assoc($result);
+
+    echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
+    echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
+    echo "Phone: ".$row['phone']."<br>";
+    echo "Ownership Type: ".$row['ownership']."<br></div>";
+    echo "<center><table border='1'><tr><th>defpref</th><th>tag</th><th>scope</th><th>defstat</th><th>statdate</th><th>cycle_no</th><th>standard</th><th>complaint</th><th>filedate</th></tr>";
+    while($row = pg_fetch_assoc($result)) {
+    echo "<tr>";
+    echo "<td><center>".$row['defpref']."</center></td>";
+    echo "<td><center>".$row['tag']."</center></td>";
+    echo "<td><center>".$row['scope']."</center></td>";
+    echo "<td><center>".$row['defstat']."</center></td>";
+    echo "<td><center>".$row['statdate']."</center></td>";
+    echo "<td><center>".$row['cycle_no']."</center></td>";
+    echo "<td><center>".$row['standard']."</center></td>";
+    echo "<td><center>".$row['complaint']."</center></td>";;
+    echo "<td><center>".$row['filedate']."</center></td>";
+    echo "</tr>";    
+    }
+    echo "</table></center>";
+    
+
+    $sql = "DROP VIEW V1, V2";
 
   function view_feedback($provnum) {
 
