@@ -263,7 +263,7 @@ class db_functions {
     echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
     echo "Phone: ".$row['phone']."<br>";
     echo "Ownership Type: ".$row['ownership']."<br></div>";
-    echo "<center><table border='1'><tr><th>defpref</th><th>tag</th><th>scope</th><th>defstat</th><th>statdate</th><th>cycle_no</th><th>standard</th><th>complaint</th><th>filedate</th></tr>";
+    echo "<center><table border='1'><tr><th>defpref</th><th>tag</th><th>scope</th><th>defstat</th><th>survey date</th><th>statdate</th><th>cycle_no</th><th>standard</th><th>complaint</th><th>filedate</th></tr>";
     $result = pg_query($this->conn, $sql);
     
     while($row = pg_fetch_assoc($result)) {
@@ -272,6 +272,7 @@ class db_functions {
       echo "<td><center><a href=\"javascript:window.open('view_tag.php?provnum=".$row['provnum']."&date=".$row['survey_date_output']."&tag=".$row['tag']."','TAG Description','width=500,height=150')\">".$row['tag']."</a></center></td>";
       echo "<td><center>".$row['scope']."</center></td>";
       echo "<td><center>".$row['defstat']."</center></td>";
+      echo "<td><center>".$row['survey_date_output']."</center></td>";
       echo "<td><center>".$row['statdate']."</center></td>";
       echo "<td><center>".$row['cycle_no']."</center></td>";
       echo "<td><center>".$row['standard']."</center></td>";
