@@ -252,7 +252,7 @@ class db_functions {
   }
 
   function show_deficiencies($provnum) {
-    $sql = "CREATE VIEW V2 AS SELECT provnum as provnum_copy, defpref, tag, scope, defstat, statdate, cycle_no, standard,complaint FROM deficiencies ;CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
+    $sql = "CREATE VIEW V2 AS SELECT provnum as provnum_copy, defpref, tag,survey_date_output, scope, defstat, statdate, cycle_no, standard,complaint FROM deficiencies ;CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
     $result = pg_query($this->conn, $sql);
 
     $sql = "SELECT * FROM V1 WHERE provnum = '$provnum'";
@@ -263,15 +263,16 @@ class db_functions {
     echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
     echo "Phone: ".$row['phone']."<br>";
     echo "Ownership Type: ".$row['ownership']."<br></div>";
-    echo "<center><table border='1'><tr><th>defpref</th><th>tag</th><th>scope</th><th>defstat</th><th>statdate</th><th>cycle_no</th><th>standard</th><th>complaint</th><th>filedate</th></tr>";
+    echo "<center><table border='1'><tr><th>defpref</th><th>tag</th><th>scope</th><th>defstat</th><th>survey date</th><th>statdate</th><th>cycle_no</th><th>standard</th><th>complaint</th><th>filedate</th></tr>";
     $result = pg_query($this->conn, $sql);
     
     while($row = pg_fetch_assoc($result)) {
       echo "<tr>";
       echo "<td><center>".$row['defpref']."</center></td>";
-      echo "<td><center>".$row['tag']."</center></td>";
+      echo "<td><center><a href=\"javascript:window.open('view_tag.php?provnum=".$row['provnum']."&date=".$row['survey_date_output']."&tag=".$row['tag']."','TAG Description','width=500,height=150')\">".$row['tag']."</a></center></td>";
       echo "<td><center>".$row['scope']."</center></td>";
       echo "<td><center>".$row['defstat']."</center></td>";
+      echo "<td><center>".$row['survey_date_output']."</center></td>";
       echo "<td><center>".$row['statdate']."</center></td>";
       echo "<td><center>".$row['cycle_no']."</center></td>";
       echo "<td><center>".$row['standard']."</center></td>";
@@ -398,6 +399,15 @@ class db_functions {
 
     $sql = "DROP VIEW V1";
     $result = pg_query($this->conn, $sql);  
+  }
+
+  function view_tag($provnum,$date,$tag) {
+    $sql = "SELECT tag_desc FROM deficiencies WHERE provnum='$provnum' AND survey_date_output='$date' AND tag = '$tag'";
+    $result = pg_query($this->conn, $sql);
+    while($row = pg_fetch_assoc($result)){
+
+    echo "Description of the tag is-> ".$row['tag_desc']." <br>";
+    }
   }
 
 }
