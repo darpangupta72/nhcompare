@@ -368,37 +368,54 @@ class db_functions {
   function show_penalties($provnum) {
     $sql = "CREATE VIEW V1 AS SELECT provnum, provname, address, city, state, zip, phone, ownership, filedate FROM provider_info";
     $result = pg_query($this->conn, $sql);
-    // $sql = "SELECT COUNT(*) FROM V1";
-    // $count1 = pg_query($this->conn, $sql)['count'];
-
-    // $sql = "SELECT * from V1 WHERE provnum = '$provnum'";
-    // $result = pg_query($this->conn, $sql);
+    
     $sql = "SELECT * from V1 WHERE provnum = '$provnum'";
     $result = pg_query($this->conn, $sql);
-    $row = pg_fetch_assoc($result);
+    $sql = "SELECT COUNT(*) FROM V1 WHERE provnum = '$provnum'";
+    $count1 = pg_fetch_assoc(pg_query($this->conn, $sql))['count'];
 
-    echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
-    echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
-    echo "Phone: ".$row['phone']."<br>";
-    echo "Ownership Type: ".$row['ownership']."<br></div>";
-    echo "<center><table border='1'><tr><th>pnlty_date</th><th>pnlty_type</th><th>fine_amt</th><th>payden_strt_dt</th><th>payden_days</th><th>filedate</th></tr>";
-    $sql = "SELECT penalty_date, penalty_type, fine_amt, payden_strt_dt, payden_days, filedate FROM penalties where provnum = '$provnum' ";
-    $result = pg_query($this->conn, $sql);
-    while($row = pg_fetch_assoc($result)) {
-      echo "<tr>";
-      echo "<td><center>".$row['penalty_date']."</center></td>";
-      echo "<td><center>".$row['penalty_type']."</center></td>";
-      echo "<td><center>".$row['fine_amt']."</center></td>";
-      echo "<td><center>".$row['payden_strt_dt']."</center></td>";
-      echo "<td><center>".$row['payden_days']."</center></td>";
-      echo "<td><center>".$row['filedate']."</center></td>";
-      echo "</tr>";    
-    }
-    echo "</table></center>";
+    if($count1 == 0)
     
+      echo "<center>No such provider number exists!</center>";
+    
+    else{
+
+      $row = pg_fetch_assoc($result);
+      echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
+      echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
+      echo "Phone: ".$row['phone']."<br>";
+      echo "Ownership Type: ".$row['ownership']."<br></div>";
+      
+      $sql = "SELECT penalty_date, penalty_type, fine_amt, payden_strt_dt, payden_days, filedate FROM penalties where provnum = '$provnum' ";
+      $result = pg_query($this->conn, $sql);
+      $sql = "SELECT COUNT(*) FROM penalties WHERE provnum = '$provnum'";
+      $count2 = pg_fetch_assoc(pg_query($this->conn, $sql))['count'];
+
+      echo "<center>Your search returned " . $count2 . " results.</center><br>";
+      if($count2 > 0) {
+
+        echo "<center><table border='1'><tr><th>Penalty Date</th><th>Penalty Type</th><th>Fine Amount</th><th>Payment Denial Start Date</th><th>Payment Denial Length (in days)</th><th>File Date</th></tr>";
+
+        while($row = pg_fetch_assoc($result)) {
+          echo "<tr>";
+          echo "<td><center>".$row['penalty_date']."</center></td>";
+          echo "<td><center>".$row['penalty_type']."</center></td>";
+          echo "<td><center>".$row['fine_amt']."</center></td>";
+          echo "<td><center>".$row['payden_strt_dt']."</center></td>";
+          echo "<td><center>".$row['payden_days']."</center></td>";
+          echo "<td><center>".$row['filedate']."</center></td>";
+          echo "</tr>";    
+        }
+
+        echo "</table></center>";
+    
+      }
+  
+    }
 
     $sql = "DROP VIEW V1";
     $result = pg_query($this->conn, $sql);  
+  
   }
 
   function view_tag($provnum,$date,$tag) {
