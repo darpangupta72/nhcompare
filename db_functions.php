@@ -257,30 +257,45 @@ class db_functions {
 
     $sql = "SELECT * FROM V1 WHERE provnum = '$provnum'";
     $result = pg_query($this->conn, $sql);
-    $row = pg_fetch_assoc($result);
 
-    echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
-    echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
-    echo "Phone: ".$row['phone']."<br>";
-    echo "Ownership Type: ".$row['ownership']."<br></div>";
-    echo "<center><table border='1'><tr><th>defpref</th><th>tag</th><th>scope</th><th>defstat</th><th>survey date</th><th>statdate</th><th>cycle_no</th><th>standard</th><th>complaint</th><th>filedate</th></tr>";
-    $result = pg_query($this->conn, $sql);
+    $sqlc = "SELECT COUNT(*) FROM V1 WHERE provnum = '$provnum'";
+    $count1 = pg_fetch_assoc(pg_query($this->conn, $sqlc))['count'];
+
+    if($count1 == 0)
     
-    while($row = pg_fetch_assoc($result)) {
-      echo "<tr>";
-      echo "<td><center>".$row['defpref']."</center></td>";
-      echo "<td><center><a href=\"javascript:window.open('view_tag.php?provnum=".$row['provnum']."&date=".$row['survey_date_output']."&tag=".$row['tag']."','TAG Description','width=500,height=150')\">".$row['tag']."</a></center></td>";
-      echo "<td><center>".$row['scope']."</center></td>";
-      echo "<td><center>".$row['defstat']."</center></td>";
-      echo "<td><center>".$row['survey_date_output']."</center></td>";
-      echo "<td><center>".$row['statdate']."</center></td>";
-      echo "<td><center>".$row['cycle_no']."</center></td>";
-      echo "<td><center>".$row['standard']."</center></td>";
-      echo "<td><center>".$row['complaint']."</center></td>";;
-      echo "<td><center>".$row['filedate']."</center></td>";
-      echo "</tr>";    
-    }
-    echo "</table></center>";
+      echo "No such provider number exists!";
+    
+    else{
+      $row = pg_fetch_assoc($result);
+      echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
+      echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
+      echo "Phone: ".$row['phone']."<br>";
+      echo "Ownership Type: ".$row['ownership']."<br></div>";
+
+      $sqlc = "SELECT COUNT(*) FROM deficiencies WHERE provnum = '$provnum'";
+      $count2 = pg_fetch_assoc(pg_query($this->conn, $sqlc))['count'];
+
+      echo "<center>Your search returned " . $count2 . " results.</center><br>";
+      if($count2 > 0) {
+        echo "<center><table border='1'><tr><th>defpref</th><th>tag</th><th>scope</th><th>defstat</th><th>survey date</th><th>statdate</th><th>cycle_no</th><th>standard</th><th>complaint</th><th>filedate</th></tr>";
+        $result = pg_query($this->conn, $sql);
+        while($row = pg_fetch_assoc($result)) {
+          echo "<tr>";
+          echo "<td><center>".$row['defpref']."</center></td>";
+          echo "<td><center><a href=\"javascript:window.open('view_tag.php?provnum=".$row['provnum']."&date=".$row['survey_date_output']."&tag=".$row['tag']."','TAG Description','width=500,height=150')\">".$row['tag']."</a></center></td>";
+          echo "<td><center>".$row['scope']."</center></td>";
+          echo "<td><center>".$row['defstat']."</center></td>";
+          echo "<td><center>".$row['survey_date_output']."</center></td>";
+          echo "<td><center>".$row['statdate']."</center></td>";
+          echo "<td><center>".$row['cycle_no']."</center></td>";
+          echo "<td><center>".$row['standard']."</center></td>";
+          echo "<td><center>".$row['complaint']."</center></td>";;
+          echo "<td><center>".$row['filedate']."</center></td>";
+          echo "</tr>";    
+        }
+        echo "</table></center>";
+      }
+    }  
     
 
     $sql = "DROP VIEW V1, V2";
@@ -329,40 +344,50 @@ class db_functions {
 
     $sql = "SELECT * FROM V1 WHERE provnum = '$provnum'";
     $result = pg_query($this->conn, $sql);
-    $row = pg_fetch_assoc($result);
-
-    echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
-    echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
-    echo "Phone: ".$row['phone']."<br>";
-    echo "Ownership Type: ".$row['ownership']."<br></div>";
-    echo "<center><table border='1'><tr><th>staffing_rating</th><th>rn_staffing_rating</th><th>aidhrd</th><th>vochrd</th><th>rnhrd</th><th>totlichrd</th><th>tothrd</th><th>pthrd</th><th>exp_aid</th><th>exp_lpn</th><th>exp_m</th><th>exp_total</th><th>adj_aid</th><th>adj_lpn</th><th>adj_m</th><th>adj_total</th><th>filedate</th></tr>";
-    $result = pg_query($this->conn, $sql);
-    while($row = pg_fetch_assoc($result)) {
-      echo "<tr>";
-      echo "<td><center>".$row['staffing_rating']."</center></td>";
-      echo "<td><center>".$row['rn_staffing_rating']."</center></td>";
-      echo "<td><center>".$row['aidhrd']."</center></td>";
-      echo "<td><center>".$row['vochrd']."</center></td>";
-      echo "<td><center>".$row['rnhrd']."</center></td>";
-      echo "<td><center>".$row['totlichrd']."</center></td>";
-      echo "<td><center>".$row['tothrd']."</center></td>";
-      echo "<td><center>".$row['pthrd']."</center></td>";
-      echo "<td><center>".$row['exp_aide']."</center></td>";
-      echo "<td><center>".$row['exp_lpn']."</center></td>";
-      echo "<td><center>".$row['exp_rn']."</center></td>";
-      echo "<td><center>".$row['exp_total']."</center></td>";
-      echo "<td><center>".$row['adj_aide']."</center></td>";
-      echo "<td><center>".$row['adj_lpn']."</center></td>";
-      echo "<td><center>".$row['adj_rn']."</center></td>";
-      echo "<td><center>".$row['adj_total']."</center></td>";
-      echo "<td><center>".$row['filedate']."</center></td>";
-      echo "</tr>";    
-    }
-    echo "</table></center>";
     
+    $sqlc = "SELECT COUNT(*) FROM V1 WHERE provnum = '$provnum'";
+    $count1 = pg_fetch_assoc(pg_query($this->conn, $sqlc))['count'];
+
+    if($count1 == 0)
+    
+      echo "No such provider number exists!";
+    
+    else{
+
+      $row = pg_fetch_assoc($result);
+      echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
+      echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
+      echo "Phone: ".$row['phone']."<br>";
+      echo "Ownership Type: ".$row['ownership']."<br></div>";
+
+      echo "<center><table border='1'><tr><th>staffing_rating</th><th>rn_staffing_rating</th><th>aidhrd</th><th>vochrd</th><th>rnhrd</th><th>totlichrd</th><th>tothrd</th><th>pthrd</th><th>exp_aid</th><th>exp_lpn</th><th>exp_m</th><th>exp_total</th><th>adj_aid</th><th>adj_lpn</th><th>adj_m</th><th>adj_total</th><th>filedate</th></tr>";
+      $result = pg_query($this->conn, $sql);
+      while($row = pg_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td><center>".$row['staffing_rating']."</center></td>";
+        echo "<td><center>".$row['rn_staffing_rating']."</center></td>";
+        echo "<td><center>".$row['aidhrd']."</center></td>";
+        echo "<td><center>".$row['vochrd']."</center></td>";
+        echo "<td><center>".$row['rnhrd']."</center></td>";
+        echo "<td><center>".$row['totlichrd']."</center></td>";
+        echo "<td><center>".$row['tothrd']."</center></td>";
+        echo "<td><center>".$row['pthrd']."</center></td>";
+        echo "<td><center>".$row['exp_aide']."</center></td>";
+        echo "<td><center>".$row['exp_lpn']."</center></td>";
+        echo "<td><center>".$row['exp_rn']."</center></td>";
+        echo "<td><center>".$row['exp_total']."</center></td>";
+        echo "<td><center>".$row['adj_aide']."</center></td>";
+        echo "<td><center>".$row['adj_lpn']."</center></td>";
+        echo "<td><center>".$row['adj_rn']."</center></td>";
+        echo "<td><center>".$row['adj_total']."</center></td>";
+        echo "<td><center>".$row['filedate']."</center></td>";
+        echo "</tr>";    
+      }
+      echo "</table></center>";  
+    }  
 
     $sql = "DROP VIEW V1";
-     $result = pg_query($this->conn, $sql);   
+    $result = pg_query($this->conn, $sql);   
   }
 
   function show_penalties($provnum) {
@@ -376,7 +401,7 @@ class db_functions {
 
     if($count1 == 0)
     
-      echo "<center>No such provider number exists!</center>";
+      echo "No such provider number exists!";
     
     else{
 
