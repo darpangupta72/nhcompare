@@ -367,7 +367,11 @@ class db_functions {
   function show_penalties($provnum) {
     $sql = "CREATE VIEW V1 AS SELECT provnum, provname, address, city, state, zip, phone, ownership, filedate FROM provider_info";
     $result = pg_query($this->conn, $sql);
+    // $sql = "SELECT COUNT(*) FROM V1";
+    // $count1 = pg_query($this->conn, $sql)['count'];
 
+    // $sql = "SELECT * from V1 WHERE provnum = '$provnum'";
+    // $result = pg_query($this->conn, $sql);
     $sql = "SELECT * from V1 WHERE provnum = '$provnum'";
     $result = pg_query($this->conn, $sql);
     $row = pg_fetch_assoc($result);
