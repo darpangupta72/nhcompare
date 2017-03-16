@@ -259,7 +259,7 @@ class db_functions {
 
     if($count1 == 0)
     
-      echo "No such provider number exists!";
+      echo "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;No such provider number exists!";
     
     else{
 
@@ -349,7 +349,7 @@ class db_functions {
 
     if($count1 == 0)
     
-      echo "No such provider number exists!";
+      echo "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;No such provider number exists!";
     
     else{
 
@@ -383,8 +383,9 @@ class db_functions {
         echo "</tr>";    
       }
       echo "</table></center>";  
+      echo "<br><center>SH - Staffing Hours (per resident per day)</center>";
     }  
-    echo "<br><center>SH - Staffing Hours (per resident per day)</center>";
+    
 
     $sql = "DROP VIEW V1";
     $result = pg_query($this->conn, $sql);   

@@ -45,6 +45,8 @@
 <?php
   //error_reporting(0);
   // button pressed 
+  echo"<center>";
   require_once('login_register.php');
+  echo "</center>";
 ?>
   

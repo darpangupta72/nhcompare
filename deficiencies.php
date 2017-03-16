@@ -2,7 +2,7 @@
 $name= '015010';$usertype='a';
  session_start();
  if(!isset($_SESSION['username'])){
- //    header("Location: login_html.php");
+    header("Location: login_html.php");
  }
  else {$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
  ?>
@@ -48,8 +48,9 @@ $name= '015010';$usertype='a';
                             if($usertype == 'n') 
                                 echo "<input type=\"hidden\" name=\"provnum\" value=\"$name\">";
                             else if($usertype == 'a' || $usertype == 's') 
-                                echo "<li>Provider No.: <input type=\"text\" name=\"provnum\">";
-                        echo "<input type=\"submit\" value=\"Show\"></form></li>";
+                                echo "<li>Provider No.: <input type=\"text\" name=\"provnum\"></li>";
+                        echo "<li>Since (YYYY-MM-DD): <input type=\"text\" name=\"date\"></li>";
+                        echo "<li><input type=\"submit\" value=\"Show\"></form></li>";
                     }
                     else echo "You are not authorised to view inspection results";                    
                 ?>
@@ -88,9 +89,15 @@ if(isset($_POST['command']))
 if(isset($_POST['provnum'])) {
 
     $provnum=$_POST['provnum'];
+    $date=$_POST['date'];
     if($usertype != 'n' ||$usertype != 'a' ||$usertype != 's'){
+     
         echo "<div style=\" margin-top:0px !important; margin-left:25%;\"><ul><br>";
-        $db->show_deficiencies($provnum);
+        if($date != '')
+            $db->show_deficiencies($provnum, $date);
+        else
+            $db->show_deficiencies($provnum);
+
     }
     else {}
 

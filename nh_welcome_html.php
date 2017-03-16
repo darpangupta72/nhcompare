@@ -2,8 +2,8 @@
 $name='Random nursing';$usertype='n';
  session_start();
 if(!isset($_SESSION['username'])){
-    //header("Location: login_html.php");
-    }
+    header("Location: login_html.php");
+}
 else {$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
  ?>
 
@@ -52,7 +52,12 @@ else {$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
                 &emsp;&emsp;&emsp;
                 <a href="penalties.php">SEE PENALTY COUNT</a>
                 &emsp;&emsp;&emsp;
-                <?php echo "<a href=\"view_feedback.php?provnum=".$name."\">VIEW FEEDBACK</a>"; ?>
+                <?php 
+                if($usertype == 'n')
+                    echo "<a href=\"view_feedback.php?provnum=".$name."\">VIEW FEEDBACK</a>";
+                else
+                    echo "<a href=\"view_feedback.php\">VIEW FEEDBACK</a>"; 
+                ?>
                 &emsp;&emsp;&emsp;
                 <a href="staff_info.php">STAFF INFO</a>
                 &emsp;&emsp;&emsp;

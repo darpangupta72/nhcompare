@@ -2,7 +2,7 @@
 $name= '';$usertype='s';
  session_start();
  if(!isset($_SESSION['username'])){
- //    header("Location: login_html.php");
+   header("Location: login_html.php");
  }
  else {$name=$_SESSION['username'];
         $usertype=$_SESSION['usertype'];}
@@ -65,6 +65,7 @@ if(isset($_POST['type'])){
     echo "<div style=\" position: absolute; top: 35%; left: 38%\"><ul>";
     echo "<center><form action = \"login_manage_html.php\" method=\"POST\">";
     echo "<li>Username:<input type=\"text\" name=\"username\" /></li>";
+    echo "<input type=\"hidden\" name=\"usertype\" value='$usertype'>";
 
     switch ($command) {
         case 'insert':

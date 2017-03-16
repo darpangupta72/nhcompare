@@ -5,7 +5,7 @@ $u_agent = $_SERVER['HTTP_USER_AGENT'];
 // database configuration variables
 $host = "host = localhost";
 $port = "port = 5432";
-$dbname = "dbname = nhc";
+$dbname = "dbname = nhcompare";
 
 // First get the platform
 // For Darpan, Pranjal

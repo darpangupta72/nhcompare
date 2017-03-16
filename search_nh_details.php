@@ -3,7 +3,7 @@
 $usertype= 'u';
 session_start();
 if(!isset($_SESSION['username'])) {
- //    header("Location: login_html.php");
+    header("Location: login_html.php");
 }
 else {
     $usertype=$_SESSION['usertype'];

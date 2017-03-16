@@ -2,7 +2,7 @@
 $name= '';$usertype='s';
  session_start();
  if(!isset($_SESSION['username'])){
- //    header("Location: login_html.php");
+     header("Location: login_html.php");
  }
  else {$name=$_SESSION['username'];
         $usertype=$_SESSION['usertype'];}
@@ -48,13 +48,13 @@ $name= '';$usertype='s';
                     Operation: <select name="type" id="type">
                             <option value = "insert">Insert</option>
                             <option value = "delete">Delete</option>
-                            <option value = "update">UPDATE</option>
+                            <option value = "update">Update</option>
                         </select>
-                    Type: <select name="table" id="table">
-                            <option value = "provider_info">Nursing Home</option>
-                            <option value = "ownership">Owners</option>
-                            <option value = "casper_contacts">State Coordinators</option>
-                            <option value = "deficiencies">Deficiencies</option> 
+                    Table: <select name="table" id="table">
+                            <option value = "provider_info">provider_info</option>
+                            <option value = "ownership">ownership</option>
+                            <option value = "casper_contacts">casper_contacts</option>
+                            <option value = "deficiencies">deficiencies</option> 
 
                         </select>
                     &emsp;&emsp;<input type="submit" value="SUBMIT">
@@ -139,7 +139,6 @@ if(isset($_POST['type'])&&isset($_POST['table'])){
         }
         
         else if($table=='ownership'){
-            echo "<li>Owner ID: <input type=\"text\" name=\"ownerID\"></li>";
             echo "<li>Provider No: <input type=\"text\" name=\"provnum\"></li>";
             echo "<li>Role: <input type=\"text\" name=\"role_desc\"></li>";
             echo "<li>Owner Type: <input type=\"text\" name=\"owner_type\"></li>";
@@ -178,8 +177,7 @@ if(isset($_POST['type'])&&isset($_POST['table'])){
         }
         
         else if($table=='ownership'){
-            echo "<li>Owner ID: <input type=\"text\" name=\"ownerID\"></li>";
-            echo "<li>Provider No: <input type=\"text\" name=\"provnum\"></li>";
+            echo "<li>Owner ID: <input type=\"text\" name=\"id\"></li>";
         }
 
         else if($table=='deficiencies'){
@@ -198,16 +196,14 @@ if(isset($_POST['type'])&&isset($_POST['table'])){
             echo "<li>State: <input type=\"text\" name=\"state\"></li>";
             echo "<li>Email: <input type=\"text\" name=\"email\"></li>";
 
-            echo "<br><br>ONLY FOLLOWING CAN BE UPDATED<br>";
+            echo "<br><br>Update<br>";
             echo "<li>New Phone: <input type=\"text\" name=\"phone\"></li>";
 
         }
         
         else if($table=='ownership'){
-            echo "<li>Owner ID: <input type=\"text\" name=\"ownerID\"></li>";
-            echo "<li>Provider No: <input type=\"text\" name=\"provnum\"></li>";
-
-            echo "<br><br>ONLY FOLLOWING CAN BE UPDATED<br>";
+            echo "<li>Owner ID: <input type=\"text\" name=\"id\"></li>";
+            echo "<br><br>Update<br>";
             echo "<li>New Role: <input type=\"text\" name=\"role_desc\"></li>";
             echo "<li>New Owner Percent: <input type=\"text\" name=\"owner_percent\"></li>";
             
@@ -220,13 +216,13 @@ if(isset($_POST['type'])&&isset($_POST['table'])){
         else if($table=='provider_info'){
             echo "<li>Provider No: <input type=\"text\" name=\"provnum\"></li>";
 
-            echo "<br><br>ONLY FOLLOWING CAN BE UPDATED<br>";
+            echo "<br><br>Update<br>";
             echo "<li>New Phone: <input type=\"text\" name=\"phone\"></li>";
 
         } 
     }
 
-     echo "<li><center><button name=\"command\" value=\"submit\">SUBMIT</button></center></li>";            
+     echo "<br><li><center><button name=\"command\" value=\"submit\">SUBMIT</button></center></li>";            
         echo "</form></center></ul></div>";
     
     
@@ -260,12 +256,12 @@ if(isset($_POST['command'])) {
         }
         
         else if($table=='ownership'){
-            $ownerID = $_POST['ownerID'];
+            
             $provnum = $_POST['provnum'];
             $role_desc = $_POST['role_desc'];$owner_type = $_POST['owner_type'];$owner_name = $_POST['owner_name'];$owner_percent = $_POST['owner_percent'];
             $association_date = $_POST['association_date'];$filedate = $_POST['filedate'];
 
-            $sql="INSERT INTO ownership VALUES('$provnum', '$role_desc', '$owner_type', '$owner_name', '$owner_percent', '$association_date', '$filedate')";
+            $sql="INSERT INTO ownership(provnum,role_desc,owner_type,owner_name,owner_percent,association_date,filedate) VALUES('$provnum', '$role_desc', '$owner_type', '$owner_name', '$owner_percent', '$association_date', '$filedate')";
         }
 
         else if($table=='casper_contacts'){
@@ -304,10 +300,8 @@ if(isset($_POST['command'])) {
         }
         
         else if($table=='ownership'){
-            $ownerID =$_POST['ownerID'];
-            $provnum =$_POST['provnum'];
-
-            $sql="DELETE FROM ownership WHERE provnum='$provnum' AND association_date='since'";
+            $id =$_POST['id'];
+            $sql="DELETE FROM ownership WHERE id='$id'";
         }
 
         else if($table=='deficiencies'){
@@ -333,13 +327,11 @@ if(isset($_POST['command'])) {
         }
         
         else if($table=='ownership'){
-            $ownerID =$_POST['ownerID'];
-            $provnum =$_POST['provnum'];
-
+            $id =$_POST['id'];
             $role_desc =$_POST['role_desc'];
             $owner_percent =$_POST['owner_percent'];
 
-            $sql="UPDATE ownership SET role_desc='$role_desc', owner_percent='$owner_percent' where provnum='$provnum' AND association_date='since'";
+            $sql="UPDATE ownership SET role_desc='$role_desc', owner_percent='$owner_percent' where id='$id'";
             
         }
 
@@ -359,8 +351,8 @@ if(isset($_POST['command'])) {
         require_once 'db_connect.php';
         $conn = pg_connect("$host $port $dbname $credentials");
         $result = pg_query($conn, $sql);
-        if(!$result){ echo "Some thing went wrong";}
-        else echo "Edit into database succesfull!!";
+        if(!$result){ echo "<center>Something went wrong!</center>";}
+        else echo "<center>Edit into database successful.</center>";
         pg_close($conn);
 
 }

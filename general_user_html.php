@@ -2,7 +2,7 @@
 $name= 'Random user';$usertype='u';
  session_start();
  if(!isset($_SESSION['username'])){
- //    header("Location: login_html.php");
+     header("Location: login_html.php");
  }
  else {$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
  ?>
