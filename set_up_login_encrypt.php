@@ -2,7 +2,8 @@
 
 require_once 'db_connect.php';
 $conn = pg_connect( "$host $port $dbname $credentials");
-  
+  $time= date("h:i:s");
+  echo "Time is ".date("h:i:s");
 $sql = "SELECT * FROM login";
 $result = pg_query($conn, $sql);
 
@@ -29,7 +30,7 @@ else{
 		$result1 = pg_query($conn, $sql);
 
     }
-
+echo " End Time is ".date("h:i:s");
 }
 
 pg_close($conn);

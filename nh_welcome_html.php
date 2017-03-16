@@ -57,6 +57,7 @@ else {$name=$_SESSION['username'];$usertype=$_SESSION['usertype'];}
                 <a href="staff_info.php">STAFF INFO</a>
                 &emsp;&emsp;&emsp;
                 <a href="deficiencies.php">INSPECTION RESULTS</a>&emsp;&emsp;
+                <a href="change_pass_html.php">CHANGE PASSWORD</a>
             </center>
             </ul>
         </div>

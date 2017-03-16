@@ -82,18 +82,19 @@ class db_functions {
   }
 
   // editing user details in database
-  function editUser($id, $passwordne, $name, $email, $mobile) {
+  function editUser($id, $passwordne) {
 
     //encrypting the given non-encrypted password
     $extra = "admi";
     $encrypted = base64_encode(sha1($passwordne.$extra, true) . $extra);
     $password=$encrypted;
   
-    $sql = "UPDATE users SET password = '$password', name='$name', emailId = '$email', mobile = '$mobile' WHERE userId = $id";
-    $result = mysqli_query( $this->conn, $sql );
+    $sql = "UPDATE login SET password = '$password' WHERE username = '$id'";
+    $result = pg_query( $this->conn, $sql );
 
     if(! $result )
       return false;
+    echo "<center>Password Changed Successfully!!</center>";
     return true;
 
   }
@@ -432,15 +433,12 @@ class db_functions {
           echo "</tr>";    
         }
 
-        echo "</table></center>";
-    
-      }
-  
+        echo "</table></center>";    
+      }  
     }
 
     $sql = "DROP VIEW V1";
-    $result = pg_query($this->conn, $sql);  
-  
+    $result = pg_query($this->conn, $sql);   
   }
 
   function view_tag($provnum,$date,$tag) {

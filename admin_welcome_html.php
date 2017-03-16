@@ -57,6 +57,10 @@ $name= ''; $usertype='a';
                 <a href="nh_welcome_html.php">NURSING HOME USER SCREEN</a>
                 &emsp;&emsp;
                 <a href="login_manage_html.php">LOGIN MANAGEMENT</a>
+                &emsp;&emsp;
+                <a href="change_pass_html.php">CHANGE PASSWORD</a>
+                &emsp;&emsp;
+                <a href="change_data_html.php">CHANGE DATABASE</a>
             </center>
             </ul>
         </div>
