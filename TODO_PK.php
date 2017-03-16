@@ -89,3 +89,15 @@ DONE 8. DG - Take username(assume nh) from $_SESSION['username'] 8,DONE 10, DONE
 DONE 9. PK - login management screen send params to login_manage.php
 DONE 9. DG - do "login_manage.php"
 10. DG - In screen 8 , 10, 11 when $provnum='' then currently empty result is being printed change this to blank i.e. no result (no of rows functionality).
+
+--DO--
+Insert complex queries (see google doc)
+edit user and feedback
+insert into different tables 
+
+indexes
+constraints - primary key constraint on all, uniqueness constraints?
+serial - insert into tables for which primary key is not identified
+trigger - insert into login when inserting into provider_info or casper_contacts, timestamps things
+note time to load
+create view for some columns for stateaverages and edit size after cleanup

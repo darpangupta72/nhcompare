@@ -252,33 +252,33 @@ class db_functions {
 
   }
 
-  function show_deficiencies($provnum) {
-    $sql = "CREATE VIEW V2 AS SELECT provnum as provnum_copy, defpref, tag,survey_date_output, scope, defstat, statdate, cycle_no, standard,complaint FROM deficiencies ;CREATE VIEW V1 AS SELECT * FROM provider_info, V2 WHERE provnum = provnum_copy";
-    $result = pg_query($this->conn, $sql);
+  function show_deficiencies($provnum, $date = '-infinity') {
 
-    $sql = "SELECT * FROM V1 WHERE provnum = '$provnum'";
-    $result = pg_query($this->conn, $sql);
-
-    $sqlc = "SELECT COUNT(*) FROM V1 WHERE provnum = '$provnum'";
-    $count1 = pg_fetch_assoc(pg_query($this->conn, $sqlc))['count'];
+    $sql = "SELECT COUNT(*) FROM provider_info WHERE provnum = '$provnum'";
+    $count1 = pg_fetch_assoc(pg_query($this->conn, $sql))['count'];
 
     if($count1 == 0)
     
       echo "No such provider number exists!";
     
     else{
+
+      $sql = "SELECT * FROM provider_info WHERE provnum = '$provnum'";
+      $result = pg_query($this->conn, $sql);
       $row = pg_fetch_assoc($result);
       echo "Provider: ".$row['provnum'].", ".$row['provname']."<br>";
       echo "Address: ".$row['address'].", ".$row['city'].", ".$row['state']." ".$row['zip'].", USA<br>";
       echo "Phone: ".$row['phone']."<br>";
       echo "Ownership Type: ".$row['ownership']."<br></div>";
 
-      $sqlc = "SELECT COUNT(*) FROM deficiencies WHERE provnum = '$provnum'";
-      $count2 = pg_fetch_assoc(pg_query($this->conn, $sqlc))['count'];
+      $sql = "SELECT COUNT(*) FROM deficiencies WHERE provnum = '$provnum' AND survey_date_output > '$date'";
+      $count2 = pg_fetch_assoc(pg_query($this->conn, $sql))['count'];
 
       echo "<center>Your search returned " . $count2 . " results.</center><br>";
       if($count2 > 0) {
-        echo "<center><table border='1'><tr><th>defpref</th><th>tag</th><th>scope</th><th>defstat</th><th>survey date</th><th>statdate</th><th>cycle_no</th><th>standard</th><th>complaint</th><th>filedate</th></tr>";
+        echo "<center><table border='1'><tr><th>Deficiency Prefix</th><th>Tag</th><th>Severity Code</th><th>Deficiency Corrected</th><th>Survey Date</th><th>Correction Date</th><th>Cycle No.</th><th>Standard</th><th>Complaint</th><th>File Date</th></tr>";
+        
+        $sql = "SELECT * FROM deficiencies WHERE provnum = '$provnum' AND survey_date_output > '$date'";
         $result = pg_query($this->conn, $sql);
         while($row = pg_fetch_assoc($result)) {
           echo "<tr>";
@@ -298,8 +298,6 @@ class db_functions {
       }
     }  
     
-
-    $sql = "DROP VIEW V1, V2";
     $result = pg_query($this->conn, $sql);   
   }
   function view_feedback($provnum) {
@@ -361,7 +359,7 @@ class db_functions {
       echo "Phone: ".$row['phone']."<br>";
       echo "Ownership Type: ".$row['ownership']."<br></div>";
 
-      echo "<center><table border='1'><tr><th>staffing_rating</th><th>rn_staffing_rating</th><th>aidhrd</th><th>vochrd</th><th>rnhrd</th><th>totlichrd</th><th>tothrd</th><th>pthrd</th><th>exp_aid</th><th>exp_lpn</th><th>exp_m</th><th>exp_total</th><th>adj_aid</th><th>adj_lpn</th><th>adj_m</th><th>adj_total</th><th>filedate</th></tr>";
+      echo "<center><table border='1'><tr><th>Staffing Rating</th><th>RN Staffing Rating</th><th>Reported CNA SH</th><th>Reported LPN SH</th><th>Reported RN SH</th><th>Reported Licensed SH</th><th>Reported Total Nurse SH</th><th>Reported Physical Therapist SH</th><th>Expected CNA SH</th><th>Expected LPN SH</th><th>Expected RN SH</th><th>Expected Total Nurse SH</th><th>Adjusted CNA SH</th><th>Adjusted LPN SH</th><th>Adjusted RN SH</th><th>Adjusted Total Nurse SH</th><th>File Date</th></tr>";
       $result = pg_query($this->conn, $sql);
       while($row = pg_fetch_assoc($result)) {
         echo "<tr>";
@@ -386,12 +384,13 @@ class db_functions {
       }
       echo "</table></center>";  
     }  
+    echo "<br><center>SH - Staffing Hours (per resident per day)</center>";
 
     $sql = "DROP VIEW V1";
     $result = pg_query($this->conn, $sql);   
   }
 
-  function show_penalties($provnum) {
+  function show_penalties($provnum, $date = '-infinity') {
     $sql = "CREATE VIEW V1 AS SELECT provnum, provname, address, city, state, zip, phone, ownership, filedate FROM provider_info";
     $result = pg_query($this->conn, $sql);
     
@@ -412,9 +411,9 @@ class db_functions {
       echo "Phone: ".$row['phone']."<br>";
       echo "Ownership Type: ".$row['ownership']."<br></div>";
       
-      $sql = "SELECT penalty_date, penalty_type, fine_amt, payden_strt_dt, payden_days, filedate FROM penalties where provnum = '$provnum' ";
+      $sql = "SELECT penalty_date, penalty_type, fine_amt, payden_strt_dt, payden_days, filedate FROM penalties where provnum = '$provnum' AND penalty_date > '$date'";
       $result = pg_query($this->conn, $sql);
-      $sql = "SELECT COUNT(*) FROM penalties WHERE provnum = '$provnum'";
+      $sql = "SELECT COUNT(*) FROM penalties WHERE provnum = '$provnum'  AND penalty_date > '$date'";
       $count2 = pg_fetch_assoc(pg_query($this->conn, $sql))['count'];
 
       echo "<center>Your search returned " . $count2 . " results.</center><br>";

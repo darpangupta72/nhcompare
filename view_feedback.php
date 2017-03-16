@@ -79,10 +79,14 @@ $db = new db_functions();
 // provnum parameter received 
 if (isset($_GET['provnum'])) {
 
-    // receiving the get params
-    $provnum = $_GET['provnum'];
-    // search and display from the database where $type = $field
-    $db->view_feedback($provnum);
+    if($_GET['provnum'] != '') {
+        
+        // receiving the get params
+        $provnum = $_GET['provnum'];
+        // search and display from the database where $type = $field
+        $db->view_feedback($provnum);
+
+    }
     
 } else {
 
