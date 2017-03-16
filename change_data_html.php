@@ -80,62 +80,62 @@ if(isset($_POST['type'])&&isset($_POST['table'])){
             echo "<li>Provider Name: <input type=\"text\" name=\"provname\"></li>"; 
             echo "<li>Address: <input type=\"text\" name=\"address\"></li>"; 
             echo "<li>City: <input type=\"text\" name=\"city\"></li>"; 
-            echo "<li>State: <input type=\"text\" name=\"state\"></li>"; 
+            echo "<li>State: <input type=\"text\" name=\"state\" value='AL'></li>"; 
             echo "<li>Zip: </li><li> <input type=\"text\" name=\"zip\"></li>"; 
             echo "<li>Phone: <input type=\"text\" name=\"phone\"></li>"; 
             echo "<li>County Code: <input type=\"text\" name=\"county_ssa\"></li>"; 
             echo "<li>County Name: <input type=\"text\" name=\"county_name\"></li>"; 
             echo "<li>Ownership: <input type=\"text\" name=\"ownership\"></li>"; 
-            echo "<li>Count of certified Beds: <input type=\"text\" name=\"bedcert\"></li>"; 
-            echo "<li>Total no. of residents: <input type=\"text\" name=\"restot\"></li>"; 
+            echo "<li>Count of certified Beds: <input type=\"text\" name=\"bedcert\" value='2'></li>"; 
+            echo "<li>Total no. of residents: <input type=\"text\" name=\"restot\" value='3'></li>"; 
             echo "<li>certification: <input type=\"text\" name=\"certification\"></li>"; 
             echo "<li>In hospital: <input type=\"text\" name=\"inhosp\"></li>"; 
             echo "<li>Legal Business Name: <input type=\"text\" name=\"lbn\"></li>"; 
-            echo "<li>Participation Date: <input type=\"text\" name=\"participation_date\"></li>"; 
+            echo "<li>Participation Date: <input type=\"text\" name=\"participation_date\" value='1990-07-01'></li>"; 
             echo "<li>CCRC facility: <input type=\"text\" name=\"ccrc_facil\"></li>"; 
             echo "<li>SFF: <input type=\"text\" name=\"sff\"></li>"; 
             echo "<li>Oldsurvey: <input type=\"text\" name=\"oldsurvey\"></li>"; 
             echo "<li>Change Ownership: <input type=\"text\" name=\"chow_last_12mos\"></li>"; 
             echo "<li>Resident Family Council: <input type=\"text\" name=\"resfamcouncil\"></li>"; 
             echo "<li>Sprinkler Status: <input type=\"text\" name=\"sprinkler_status\"></li>"; 
-            echo "<li>Overall Rating: <input type=\"text\" name=\"overall_rating\"></li>"; 
-            echo "<li>Survey Rating: <input type=\"text\" name=\"survey_rating\"></li>"; 
-            echo "<li>Quality Rating: <input type=\"text\" name=\"quality_rating\"></li>"; 
-            echo "<li>Staffing Rating: <input type=\"text\" name=\"staffing_rating\"></li>"; 
-            echo "<li>RN_Staffing Rating: <input type=\"text\" name=\"rn_staffing_rating\"></li>"; 
-            echo "<li>aidhrd: <input type=\"text\" name=\"aidhrd\"></li>"; 
-            echo "<li>vochrd: <input type=\"text\" name=\"vochrd\"></li>"; 
-            echo "<li>rnhrd: <input type=\"text\" name=\"rnhrd\"></li>"; 
-            echo "<li>totlichrd: <input type=\"text\" name=\"totlichrd\"></li>"; 
-            echo "<li>tothrd: <input type=\"text\" name=\"tothrd\"></li>"; 
-            echo "<li>pthrd: <input type=\"text\" name=\"pthrd\"></li>"; 
-            echo "<li>exp_aide: <input type=\"text\" name=\"exp_aide\"></li>"; 
-            echo "<li>exp_lpn: <input type=\"text\" name=\"exp_lpn\"></li>"; 
-            echo "<li>exp_rn: <input type=\"text\" name=\"exp_rn\"></li>"; 
-            echo "<li>exp_total: <input type=\"text\" name=\"exp_total\"></li>"; 
-            echo "<li>adj_aide: <input type=\"text\" name=\"adj_aide\"></li>"; 
-            echo "<li>adj_lpn: <input type=\"text\" name=\"adj_lpn\"></li>"; 
-            echo "<li>adj_rn: <input type=\"text\" name=\"adj_rn\"></li>"; 
-            echo "<li>adj_total: <input type=\"text\" name=\"adj_total\"></li>"; 
+            echo "<li>Overall Rating: <input type=\"text\" name=\"overall_rating\" value='3'></li>"; 
+            echo "<li>Survey Rating: <input type=\"text\" name=\"survey_rating\" value='3'></li>"; 
+            echo "<li>Quality Rating: <input type=\"text\" name=\"quality_rating\" value='3'></li>"; 
+            echo "<li>Staffing Rating: <input type=\"text\" name=\"staffing_rating\" value='3'></li>"; 
+            echo "<li>RN_Staffing Rating: <input type=\"text\" name=\"rn_staffing_rating\" value='3'></li>"; 
+            echo "<li>aidhrd: <input type=\"text\" name=\"aidhrd\" value='3.0'></li>"; 
+            echo "<li>vochrd: <input type=\"text\" name=\"vochrd\" value='3.0'></li>"; 
+            echo "<li>rnhrd: <input type=\"text\" name=\"rnhrd\" value='3.0'></li>"; 
+            echo "<li>totlichrd: <input type=\"text\" name=\"totlichrd\" value='3.0'></li>"; 
+            echo "<li>tothrd: <input type=\"text\" name=\"tothrd\" value='3.0'></li>"; 
+            echo "<li>pthrd: <input type=\"text\" name=\"pthrd\" value='3.0'></li>"; 
+            echo "<li>exp_aide: <input type=\"text\" name=\"exp_aide\" value='3.0'></li>"; 
+            echo "<li>exp_lpn: <input type=\"text\" name=\"exp_lpn\" value='3.0'></li>"; 
+            echo "<li>exp_rn: <input type=\"text\" name=\"exp_rn\" value='3.0'></li>"; 
+            echo "<li>exp_total: <input type=\"text\" name=\"exp_total\" value='3.0'></li>"; 
+            echo "<li>adj_aide: <input type=\"text\" name=\"adj_aide\" value='3.0'></li>"; 
+            echo "<li>adj_lpn: <input type=\"text\" name=\"adj_lpn\" value='3.0'></li>"; 
+            echo "<li>adj_rn: <input type=\"text\" name=\"adj_rn\" value='3.0'></li>"; 
+            echo "<li>adj_total: <input type=\"text\" name=\"adj_total\" value='3.0'></li>"; 
             echo "<li>Cycle_1_defs_score: <input type=\"text\" name=\"cycle_1_defs_score\"></li>"; 
-            echo "<li>cycle_1_survey_date: <input type=\"text\" name=\"cycle_1_survey_date\"></li>"; 
+            echo "<li>cycle_1_survey_date: <input type=\"text\" name=\"cycle_1_survey_date\" value='1990-07-01'></li>"; 
             echo "<li>cycle_1_numrevis: <input type=\"text\" name=\"cycle_1_numrevis\"></li>"; 
             echo "<li>cycle_1_revisit_score: <input type=\"text\" name=\"cycle_1_revisit_score\"></li>"; 
             echo "<li>cycle_1_total_score: <input type=\"text\" name=\"cycle_1_total_score\"></li>"; 
             echo "<li>cycle_2_defs_score: <input type=\"text\" name=\"cycle_2_defs_score\"></li>"; 
-            echo "<li>Cycle 2 survey date: <input type=\"text\" name=\"cycle_2_survey_date \"></li>"; 
+            echo "<li>Cycle 2 survey date: <input type=\"text\" name=\"cycle_2_survey_date\" value='1990-07-01'></li>"; 
             echo "<li>Cycle 2 numrevis: <input type=\"text\" name=\"cycle_2_numrevis\"></li>"; 
             echo "<li>Cycle 2 revisit score: <input type=\"text\" name=\"cycle_2_revisit_score\"></li>"; 
             echo "<li>Cycle 2 total score: <input type=\"text\" name=\"cycle_2_total_score\"></li>"; 
             echo "<li>Cycle 3 defs score: <input type=\"text\" name=\"cycle_3_defs_score\"></li>"; 
-            echo "<li>Cycle 3 survey date: <input type=\"text\" name=\"cycle_3_survey_date \"></li>"; 
+            echo "<li>Cycle 3 survey date: <input type=\"text\" name=\"cycle_3_survey_date\" value='1990-07-01'></li>"; 
             echo "<li>Cycle 3 numrevis: <input type=\"text\" name=\"cycle_3_numrevis\"></li>"; 
             echo "<li>Cycle 3 revisit score: <input type=\"text\" name=\"cycle_3_revisit_score\"></li>"; 
             echo "<li>Cycle 3 total score: <input type=\"text\" name=\"cycle_3_total_score\"></li>"; 
             echo "<li>weighted_all_cycles_score: <input type=\"text\" name=\"weighted_all_cycles_score\"></li>"; 
-            echo "<li>Incident Count: <input type=\"text\" name=\"incident_cnt\"></li>"; 
-            echo "<li>Complaint Count: <input type=\"text\" name=\"cmplnt_cnt\"></li>"; 
-            echo "<li>File Date: <input type=\"text\" name=\"filedate\"></li>"; 
+            echo "<li>Incident Count: <input type=\"text\" name=\"incident_cnt\" value='3'></li>"; 
+            echo "<li>Complaint Count: <input type=\"text\" name=\"cmplnt_cnt\" value='3'></li>"; 
+            echo "<li>File Date: <input type=\"text\" name=\"filedate\" value='1990-07-01'></li>"; 
         }
         
         else if($table=='ownership'){
@@ -233,10 +233,12 @@ if(isset($_POST['type'])&&isset($_POST['table'])){
 }    
 
 if(isset($_POST['command'])) {
-    $command=$_POST['command'];
+    $command=$_POST['command'];$type=$_POST['type']; $table=$_POST['table'];
 
     $sql='';
-    if($command=='insert'){
+    if($command=='submit'){
+
+    if($type=='insert'){
         if($table=='provider_info') {
             $provnum =$_POST['provnum']; $provname =$_POST['provname']; $address =$_POST['address']; $city =$_POST['city']; $state =$_POST['state']; $zip =$_POST['zip']; 
             $phone =$_POST['phone']; $county_ssa =$_POST['county_ssa']; $county_name =$_POST['county_name']; $ownership =$_POST['ownership']; $bedcert =$_POST['bedcert'];
@@ -252,9 +254,9 @@ if(isset($_POST['command'])) {
             $cycle_2_numrevis =$_POST['cycle_2_numrevis']; $cycle_2_revisit_score =$_POST['cycle_2_revisit_score']; $cycle_2_total_score =$_POST['cycle_2_total_score']; 
             $cycle_3_defs_score =$_POST['cycle_3_defs_score']; $cycle_3_survey_date =$_POST['cycle_3_survey_date']; $cycle_3_numrevis =$_POST['cycle_3_numrevis']; 
             $cycle_3_revisit_score =$_POST['cycle_3_revisit_score']; $cycle_3_total_score =$_POST['cycle_3_total_score']; 
-            $weighted_all_cycles_score =$_POST['weighted_all_cycles_score']; $incident_cnt =$_POST['incident_cnt']; $cmplnt_cnt =$_POST['cmplnt_cnt']; $ =$_POST['filedate']; 
+            $weighted_all_cycles_score =$_POST['weighted_all_cycles_score']; $incident_cnt =$_POST['incident_cnt']; $cmplnt_cnt =$_POST['cmplnt_cnt']; $filedate =$_POST['filedate']; 
         
-            $sql="INSERT INTO provider_info(provnum, provname, address, city, state, zip, phone, county_ssa, county_name, ownership, bedcert, restot, certification , inhosp, lbn, participation_date, ccrc_facil, sff, oldsurvey, chow_last_12mos, resfamcouncil, sprinkler_status, overall_rating, survey_rating, quality_rating, staffing_rating, rn_staffing_rating, aidhrd, vochrd, rnhrd, totlichrd, tothrd, pthrd, exp_aide, exp_lpn, exp_rn, exp_total, adj_aide, adj_lpn, adj_rn, adj_total, cycle_1_defs_score, cycle_1_survey_date, cycle_1_numrevis, cycle_1_revisit_score, cycle_1_total_score, cycle_2_defs_score, cycle_2_survey_date, cycle_2_numrevis, cycle_2_revisit_score, cycle_2_total_score, cycle_3_defs_score, cycle_3_survey_date, cycle_3_numrevis, cycle_3_revisit_score, cycle_3_total_score, weighted_all_cycles_score, incident_cnt, cmplnt_cnt, filedate) VALUES ($provnum, $provname, $address, $city, $state, $zip, $phone, $county_ssa, $county_name, $ownership, $bedcert, $restot, $certification , $inhosp, $lbn, $participation_date, $ccrc_facil, $sff, $oldsurvey, $chow_last_12mos, $resfamcouncil, $sprinkler_status, $overall_rating, $survey_rating, $quality_rating, $staffing_rating, $rn_staffing_rating, $aidhrd, $vochrd, $rnhrd, $totlichrd, $tothrd, $pthrd, $exp_aide, $exp_lpn, $exp_rn, $exp_total, $adj_aide, $adj_lpn, $adj_rn, $adj_total, $cycle_1_defs_score, $cycle_1_survey_date, $cycle_1_numrevis, $cycle_1_revisit_score, $cycle_1_total_score, $cycle_2_defs_score, $cycle_2_survey_date, $cycle_2_numrevis, $cycle_2_revisit_score, $cycle_2_total_score, $cycle_3_defs_score, $cycle_3_survey_date, $cycle_3_numrevis, $cycle_3_revisit_score, $cycle_3_total_score, $weighted_all_cycles_score, $incident_cnt, $cmplnt_cnt, $filedate)";
+            $sql="INSERT INTO provider_info(provnum, provname, address, city, state, zip, phone, county_ssa, county_name, ownership, bedcert, restot, certification , inhosp, lbn, participation_date, ccrc_facil, sff, oldsurvey, chow_last_12mos, resfamcouncil, sprinkler_status, overall_rating, survey_rating, quality_rating, staffing_rating, rn_staffing_rating, aidhrd, vochrd, rnhrd, totlichrd, tothrd, pthrd, exp_aide, exp_lpn, exp_rn, exp_total, adj_aide, adj_lpn, adj_rn, adj_total, cycle_1_defs_score, cycle_1_survey_date, cycle_1_numrevis, cycle_1_revisit_score, cycle_1_total_score, cycle_2_defs_score, cycle_2_survey_date, cycle_2_numrevis, cycle_2_revisit_score, cycle_2_total_score, cycle_3_defs_score, cycle_3_survey_date, cycle_3_numrevis, cycle_3_revisit_score, cycle_3_total_score, weighted_all_cycles_score, incident_cnt, cmplnt_cnt, filedate) VALUES ('$provnum', '$provname', '$address', '$city', '$state', '$zip', '$phone', '$county_ssa', '$county_name', '$ownership', '$bedcert', '$restot', '$certification ', '$inhosp', '$lbn', '$participation_date', '$ccrc_facil', '$sff', '$oldsurvey', '$chow_last_12mos', '$resfamcouncil', '$sprinkler_status', '$overall_rating', '$survey_rating', '$quality_rating', '$staffing_rating', '$rn_staffing_rating', '$aidhrd', '$vochrd', '$rnhrd', '$totlichrd', '$tothrd', '$pthrd', '$exp_aide', '$exp_lpn', '$exp_rn', '$exp_total', '$adj_aide', '$adj_lpn', '$adj_rn', '$adj_total', '$cycle_1_defs_score', '$cycle_1_survey_date', '$cycle_1_numrevis', '$cycle_1_revisit_score', '$cycle_1_total_score', '$cycle_2_defs_score', '$cycle_2_survey_date', '$cycle_2_numrevis', '$cycle_2_revisit_score', '$cycle_2_total_score', '$cycle_3_defs_score', '$cycle_3_survey_date', '$cycle_3_numrevis', '$cycle_3_revisit_score', '$cycle_3_total_score', '$weighted_all_cycles_score', '$incident_cnt', '$cmplnt_cnt', '$filedate')";
         }
         
         else if($table=='ownership'){
@@ -293,7 +295,7 @@ if(isset($_POST['command'])) {
         }
     }
 
-    else if($command=='delete'){
+    else if($type=='delete'){
         if($table=='casper_contacts'){
             $state=$_POST['state'];
             $email=$_POST['email'];
@@ -321,21 +323,21 @@ if(isset($_POST['command'])) {
         } 
     }
 
-    else if($command=='update'){
+    else if($type=='update'){
         if($table=='casper_contacts'){
-            $ =$_POST['state'];
-            $ =$_POST['email'];
-            $ =$_POST['phone'];
+            $state =$_POST['state'];
+            $email =$_POST['email'];
+            $phone =$_POST['phone'];
 
             $sql="UPDATE casper_contacts SET phone='$phone' Where state='$state' AND email='$email'";
         }
         
         else if($table=='ownership'){
-            $ =$_POST['ownerID'];
-            $ =$_POST['provnum'];
+            $ownerID =$_POST['ownerID'];
+            $provnum =$_POST['provnum'];
 
-            $ =$_POST['role_desc'];
-            $ =$_POST['owner_percent'];
+            $role_desc =$_POST['role_desc'];
+            $owner_percent =$_POST['owner_percent'];
 
             $sql="UPDATE ownership SET role_desc='$role_desc', owner_percent='$owner_percent' where provnum='$provnum' AND association_date='since'";
             
@@ -351,10 +353,17 @@ if(isset($_POST['command'])) {
 
            $sql="UPDATE provider_info SET phone='$phone' where provnum='$provnum'";
         } 
-
-
-        ////RUN SQL QUERY
     }
+
+    ////RUN SQL QUERY
+        require_once 'db_connect.php';
+        $conn = pg_connect("$host $port $dbname $credentials");
+        $result = pg_query($conn, $sql);
+        if(!$result){ echo "Some thing went wrong";}
+        else echo "Edit into database succesfull!!";
+        pg_close($conn);
+
+}
     switch ($_POST['command']) {
         case 'logout':
             session_unset();
