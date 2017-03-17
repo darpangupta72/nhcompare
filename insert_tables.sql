@@ -1,4 +1,3 @@
-
 --1 STATES--
 
 CREATE TABLE states(
@@ -485,7 +484,11 @@ CREATE TRIGGER update_modtime BEFORE UPDATE
   ON feedback FOR EACH ROW EXECUTE PROCEDURE
   update_column();
 
---11 HEALTH DEFICIENCIES--
+
+-- INSERTED TILL HERE ONLY --
+
+
+--13 HEALTH DEFICIENCIES--
 
 CREATE TABLE Health_Deficiencies (
 federal_provider_no varchar(8),
@@ -506,7 +509,7 @@ process_date date);
 COPY Health_Deficiencies FROM 'C:\Users\Pranjal Kumar\Documents\Study\Semester-6\COL362-DatabaseManagement\Assignments\Assignment3\Health_Deficiencies.csv' DELIMITER ',' CSV HEADER;
 
 
---12 INSPECTION CYCLE 1--
+--14 INSPECTION CYCLE 1--
 
 CREATE TABLE Inspection_Cycle_1_Deficiencies (
 federal_provider_no varchar(8),
@@ -526,7 +529,7 @@ process_date date);
 COPY Inspection_Cycle_1_Deficiencies FROM 'C:\Users\Pranjal Kumar\Documents\Study\Semester-6\COL362-DatabaseManagement\Assignments\Assignment3\Inspection_Cycle_1_Deficiencies.csv' DELIMITER ',' CSV HEADER;
 
 
---13 INSPECTION CYCLE 2--
+--15 INSPECTION CYCLE 2--
 
 CREATE TABLE Inspection_Cycle_2_Deficiencies (
 federal_provider_no varchar(8),
@@ -546,7 +549,7 @@ process_date date);
 COPY Inspection_Cycle_2_Deficiencies FROM 'C:\Users\Pranjal Kumar\Documents\Study\Semester-6\COL362-DatabaseManagement\Assignments\Assignment3\Inspection_Cycle_2_Deficiencies.csv' DELIMITER ',' CSV HEADER;
 
 
---14 INSPECTION CYCLE 3--
+--16 INSPECTION CYCLE 3--
 
 CREATE TABLE Inspection_Cycle_3_Deficiencies (
 federal_provider_no varchar(8),
@@ -566,7 +569,7 @@ process_date date);
 COPY Inspection_Cycle_3_Deficiencies FROM 'C:\Users\Pranjal Kumar\Documents\Study\Semester-6\COL362-DatabaseManagement\Assignments\Assignment3\Inspection_Cycle_3_Deficiencies.csv' DELIMITER ',' CSV HEADER;
 
 
---15 PENALTY COUNTS--
+--17 PENALTY COUNTS--
 
 CREATE TABLE Penalty_Count (
 PROVNUM varchar(8),
@@ -581,7 +584,7 @@ process_date date);
 COPY Penalty_Count FROM 'C:\Users\Pranjal Kumar\Documents\Study\Semester-6\COL362-DatabaseManagement\Assignments\Assignment3\Penalty_Counts.csv' DELIMITER ',' CSV HEADER;
 
 
---16 Star Rating--
+--18 Star Rating--
 
 CREATE TABLE Star_Rating (
 PROVNUM varchar(8),
@@ -602,7 +605,7 @@ process_date date);
 COPY Star_Rating FROM 'C:\Users\Pranjal Kumar\Documents\Study\Semester-6\COL362-DatabaseManagement\Assignments\Assignment3\Star_Ratings.csv' DELIMITER ',' CSV HEADER;
 
 
---17 Quality Measure Short Stay--
+--19 Quality Measure Short Stay--
 
 CREATE TABLE Q_Measure_Short_Stay (
 PROVNUM varchar(8),
@@ -629,7 +632,7 @@ process_date date);
 COPY Q_Measure_Short_Stay FROM 'C:\Users\Pranjal Kumar\Documents\Study\Semester-6\COL362-DatabaseManagement\Assignments\Assignment3\Quality_Measures_-_Short_Stay.csv' DELIMITER ',' CSV HEADER;
 
 
---18 Quality Measure Long Stay--
+--20 Quality Measure Long Stay--
 
 CREATE TABLE Q_Measure_Long_Stay (
 PROVNUM varchar(8),
@@ -658,7 +661,7 @@ process_date date);
 COPY Q_Measure_Long_Stay FROM 'C:\Users\Pranjal Kumar\Documents\Study\Semester-6\COL362-DatabaseManagement\Assignments\Assignment3\Quality_Measures_-_Long_Stay.csv' DELIMITER ',' CSV HEADER;
 
 
---19 Staffing--
+--21 Staffing--
 
 CREATE TABLE Staffing (
 PROVNUM varchar(6),
@@ -687,5 +690,3 @@ Adjusted_Nurse_Staff_Hours numeric,
 staffLocation varchar(150),
 process_date date);
 COPY Staffing FROM 'C:\Users\Pranjal Kumar\Documents\Study\Semester-6\COL362-DatabaseManagement\Assignments\Assignment3\Staffing.csv' DELIMITER ',' CSV HEADER;
-
-
