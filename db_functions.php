@@ -295,6 +295,38 @@ class db_functions {
           echo "</tr>";    
         }
         echo "</table></center>";
+
+        $sqldv1="SELECT provnum,cycle_no,total_deficiencies,standard_def,complaint_def from prov_agg_deficiencies where provnum='$provnum' group by provnum,cycle_no,total_deficiencies,standard_def,complaint_def";
+        $resultdv1= pg_query($this->conn,$sqldv1);
+        echo "<br><center> AGGREGATE RESULTS CYCLE WISE</center><br>";
+        echo "<center><table border='1'><tr><th>Provider Number</th><th>Cycle Number</th><th>Total Deficiencies</th><th>Standard Deficiencies</th><th>Complaint Deficiencies</th></tr>";
+
+        while($rowdv = pg_fetch_assoc($resultdv1)){ 
+        echo "<tr>";
+        echo "<td><center>".$rowdv['provnum']."</center></td>";
+        echo "<td><center>".$rowdv['cycle_no']."</center></td>";
+        echo "<td><center>".$rowdv['total_deficiencies']."</center></td>";
+        echo "<td><center>".$rowdv['standard_def']."</center></td>";
+        echo "<td><center>".$rowdv['complaint_def']."</center></td>";
+        echo "</tr>";    
+        }
+        echo "</table></center>";
+
+        $sqldv2="SELECT provnum,cycle_no,scope,scope_count from prov_agg_deficiencies where provnum='$provnum' group by provnum,cycle_no,scope,scope_count";
+        $resultdv2= pg_query($this->conn,$sqldv2);
+        echo "<br><center> AGGREGATE RESULTS SCOPE WISE</center><br>";
+        echo "<center><table border='1'><tr><th>Provider Number</th><th>Cycle Number</th><th>SCOPE</th><th>SCOPE COUNT</th></tr>";
+
+        while($rowdv = pg_fetch_assoc($resultdv2)){ 
+        echo "<tr>";
+        echo "<td><center>".$rowdv['provnum']."</center></td>";
+        echo "<td><center>".$rowdv['cycle_no']."</center></td>";
+        echo "<td><center>".$rowdv['scope']."</center></td>";
+        echo "<td><center>".$rowdv['scope_count']."</center></td>";
+        echo "</tr>";    
+        }
+        echo "</table></center>";
+        
       }
     }  
     
@@ -433,7 +465,24 @@ class db_functions {
           echo "</tr>";    
         }
 
-        echo "</table></center>";    
+        echo "</table></center>";   
+        
+        $sqlpv="SELECT * from prov_agg_penalties where provnum='$provnum'";
+        $resultpv= pg_query($this->conn,$sqlpv);
+        echo "<br><center> AGGREGATE RESULTS</center><br>";
+        echo "<center><table border='1'><tr><th>Provider Number</th><th>Penalty Count</th><th>Total Fine Amount</th><th>No. of Fines</th><th>No. of Payment Denial</th></tr>";
+
+        $rowpv = pg_fetch_assoc($resultpv); 
+        echo "<tr>";
+        echo "<td><center>".$rowpv['provnum']."</center></td>";
+        echo "<td><center>".$rowpv['penalty_count']."</center></td>";
+        echo "<td><center>".$rowpv['total_fine']."</center></td>";
+        echo "<td><center>".$rowpv['no_of_fines']."</center></td>";
+        echo "<td><center>".$rowpv['no_of_payden']."</center></td>";
+        echo "</tr>";    
+
+        echo "</table></center>";
+        
       }  
     }
 

@@ -52,6 +52,8 @@ $name= 'Random user';$usertype='u';
                 <a href="search_nh_html.php">SEARCH NURSING HOMES</a>
                 &emsp;&emsp;
                 <a href="change_pass_html.php">CHANGE PASSWORD</a>
+                &emsp;&emsp;
+                <a href="state_average.php">STATE AVERAGE</a>
             </center>
             </ul>
         </div>
